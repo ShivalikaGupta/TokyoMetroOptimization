@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>W3.CSS Template</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+            h5{
+                font-size: 20px;
+            }
+            header {
+                color: rgb(255, 255, 255);
+                background-color: rgb(0, 0, 0);
+                padding: 10px 10px 40px 10px;
+                opacity: .8;
+                font-size: 20px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body class="w3-light-grey">
+        <header>
+            <h1 class="title">Tokyo Metro Path Optimization</h1>
+        </header>
+
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main" style="margin-top:43px;">
+
+            <!-- Header -->
+            <div class="w3-container" style="padding-top:22px">
+                <h5><b><i class="fa fa-dashboard"></i> Reducing: </b></h5>
+            </div>
+
+            <div class="w3-row-padding w3-margin-bottom">
+                <div class="w3-third">
+                    <div class="w3-container w3-blue w3-padding-16" id = "dist">
+                        <div class="w3-left"><i class="fa fa-map-o
+                                w3-xxxlarge"></i></div>
+                        <div class="w3-clear"></div>
+                        <h4>Total Distance</h4>
+                    </div>
+                </div>
+                <div class="w3-third">
+                    <div class="w3-container w3-red w3-padding-16" id = "stops">
+                        <div class="w3-left"><i class="fa fa-minus-circle w3-xxxlarge"></i></div>
+                        <div class="w3-clear"></div>
+                        <h4>Number of stops</h4>
+                    </div>
+                </div>
+                <div class="w3-third">
+                    <div class="w3-container w3-orange w3-padding-16" id = "transfers">
+                        <div class="w3-left"><i class="fa fa-share-alt
+                                w3-xxxlarge"></i></div>
+                        <div class="w3-clear"></div>
+                        <h4>Number of Transfers</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-panel">
+                <div class="w3-row-padding" style="margin:0 -16px">
+                    <div class="w3-twothird">
+                        <h5>Regions</h5>
+                        <img src="/w3images/region.jpg" style="width:100%"
+                            alt="Google Regional Map">
+                    </div>
+                    <div class="w3-third">
+                        <h5>Feeds</h5>
+                        <table class="w3-table w3-striped w3-white">
+                            <tr>
+                                <td><i class="fa fa-map-o w3-text-blue w3-large"></i></td>
+                                <td>Total Distance: </td>
+                                <td><i>10 miles</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-minus-circle w3-text-red w3-large"></i></td>
+                                <td>Number of stops: </td>
+                                <td><i>15 stops</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-share-alt w3-text-orange
+                                        w3-large"></i></td>
+                                <td>Number of transfers: </td>
+                                <td><i>5 transfers</i></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-plus-square w3-text-green
+                                        w3-large"></i></td>
+                                <td>Add a new station: </td>
+                                <td><i>Yes</i></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-container">
+                <h5>Stations Along The Path</h5>
+                <table class="w3-table w3-striped w3-bordered w3-border
+                    w3-hoverable w3-white">
+                    <tr>
+                        <td>United States</td>
+                        <td>65%</td>
+                    </tr>
+                    <tr>
+                        <td>UK</td>
+                        <td>15.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Russia</td>
+                        <td>5.6%</td>
+                    </tr>
+                    <tr>
+                        <td>Spain</td>
+                        <td>2.1%</td>
+                    </tr>
+                    <tr>
+                        <td>India</td>
+                        <td>1.9%</td>
+                    </tr>
+                    <tr>
+                        <td>France</td>
+                        <td>1.5%</td>
+                    </tr>
+                </table><br>
+                
+            </div>
+            <hr>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>General Stats</h5>
+            <p>New Visitors</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-green"
+                    style="width:25%">+25%</div>
+            </div>
+
+            <p>New Users</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-orange"
+                    style="width:50%">50%</div>
+            </div>
+
+            <p>Bounce Rate</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-red"
+                    style="width:75%">75%</div>
+            </div>
+        </div>
+        <hr>
+        <a href="index.html"><button class="w3-button w3-dark-grey ">New Path  <i
+            class="fa fa-arrow-right"></i></button></a>
+    </body>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const start_station = urlParams.get('s');
+        const end_station = urlParams.get('e');
+        const dist = urlParams.get('d');
+        console.log(dist);
+        const trans = urlParams.get('t');
+        const stops = urlParams.get('st');
+        var dist_div = document.getElementById( 'dist' );
+        var stops_div = document.getElementById( 'stops' );
+        var transfers_div = document.getElementById( 'transfers' );
+        if (dist === "false") {
+            dist_div.style.display = "none";
+        }
+        if (trans === "false") {
+            transfers_div.style.display = "none";
+        }
+        if (stops === "false") {
+            stops_div.style.display = 'none';
+        }
+    </script>
+</html>
