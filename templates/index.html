@@ -37,7 +37,13 @@
                 stops = document.querySelector('.stops').checked;
             }
             function visitPage(){
-                window.location = "visualize.html?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops;
+                //call algorithm function
+                result = " noooo "
+                $.getJSON('/background_process_test', function(data) {
+                    console.log(data)
+                });
+                //console.log(results.data);
+                window.location = "results?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops + "&res=" + result;
             }
         </script>
         <style>
