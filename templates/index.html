@@ -1,380 +1,806 @@
 <!DOCTYPE html>
+<!--Source: https://lovespreadsheets.medium.com/the-ultimate-guide-to-html-forms-4511592d8073 -->
 <html>
     <head>
-        <title>W3.CSS Template</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Raleway">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-</style>
-    </head>
-    <body class="w3-light-grey">
-
-        <!-- Top container -->
-        <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-            <button class="w3-bar-item w3-button w3-hide-large w3-hover-none
-                w3-hover-text-light-grey" onclick="w3_open();"><i class="fa
-                    fa-bars"></i> Menu</button>
-            <span class="w3-bar-item w3-right">Logo</span>
-        </div>
-
-        <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-collapse w3-white w3-animate-left"
-            style="z-index:3;width:300px;" id="mySidebar"><br>
-            <div class="w3-container w3-row">
-                <div class="w3-col s4">
-                    <img src="/w3images/avatar2.png" class="w3-circle
-                        w3-margin-right" style="width:46px">
-                </div>
-                <div class="w3-col s8 w3-bar">
-                    <span>Welcome, <strong>Mike</strong></span><br>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa
-                            fa-envelope"></i></a>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa
-                            fa-user"></i></a>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa
-                            fa-cog"></i></a>
-                </div>
-            </div>
-            <hr>
-            <div class="w3-container">
-                <h5>Dashboard</h5>
-            </div>
-            <div class="w3-bar-block">
-                <a href="#" class="w3-bar-item w3-button w3-padding-16
-                    w3-hide-large w3-dark-grey w3-hover-black"
-                    onclick="w3_close()" title="close menu"><i class="fa
-                        fa-remove fa-fw"></i> Close Menu</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i
-                        class="fa fa-users fa-fw"></i> Overview</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-eye fa-fw"></i> Views</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-users fa-fw"></i> Traffic</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-bullseye fa-fw"></i> Geo</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-diamond fa-fw"></i> Orders</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-bell fa-fw"></i> News</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-bank fa-fw"></i> General</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-history fa-fw"></i> History</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i
-                        class="fa fa-cog fa-fw"></i> Settings</a><br><br>
-            </div>
-        </nav>
-
-
-        <!-- Overlay effect when opening sidebar on small screens -->
-        <div class="w3-overlay w3-hide-large w3-animate-opacity"
-            onclick="w3_close()" style="cursor:pointer" title="close side menu"
-            id="myOverlay"></div>
-
-        <!-- !PAGE CONTENT! -->
-        <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-
-            <!-- Header -->
-            <header class="w3-container" style="padding-top:22px">
-                <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
-            </header>
-
-            <div class="w3-row-padding w3-margin-bottom">
-                <div class="w3-quarter">
-                    <div class="w3-container w3-red w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-comment
-                                w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>52</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                        <h4>Messages</h4>
-                    </div>
-                </div>
-                <div class="w3-quarter">
-                    <div class="w3-container w3-blue w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>99</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                        <h4>Views</h4>
-                    </div>
-                </div>
-                <div class="w3-quarter">
-                    <div class="w3-container w3-teal w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-share-alt
-                                w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>23</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                        <h4>Shares</h4>
-                    </div>
-                </div>
-                <div class="w3-quarter">
-                    <div class="w3-container w3-orange w3-text-white
-                        w3-padding-16">
-                        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-                        <div class="w3-right">
-                            <h3>50</h3>
-                        </div>
-                        <div class="w3-clear"></div>
-                        <h4>Users</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w3-panel">
-                <div class="w3-row-padding" style="margin:0 -16px">
-                    <div class="w3-third">
-                        <h5>Regions</h5>
-                        <img src="/w3images/region.jpg" style="width:100%"
-                            alt="Google Regional Map">
-                    </div>
-                    <div class="w3-twothird">
-                        <h5>Feeds</h5>
-                        <table class="w3-table w3-striped w3-white">
-                            <tr>
-                                <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-                                <td>New record, over 90 views.</td>
-                                <td><i>10 mins</i></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-                                <td>Database error.</td>
-                                <td><i>15 mins</i></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-users w3-text-yellow
-                                        w3-large"></i></td>
-                                <td>New record, over 40 users.</td>
-                                <td><i>17 mins</i></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-comment w3-text-red
-                                        w3-large"></i></td>
-                                <td>New comments.</td>
-                                <td><i>25 mins</i></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-bookmark w3-text-blue
-                                        w3-large"></i></td>
-                                <td>Check transactions.</td>
-                                <td><i>28 mins</i></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-laptop w3-text-red
-                                        w3-large"></i></td>
-                                <td>CPU overload.</td>
-                                <td><i>35 mins</i></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-share-alt w3-text-green
-                                        w3-large"></i></td>
-                                <td>New shares.</td>
-                                <td><i>39 mins</i></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="w3-container">
-                <h5>General Stats</h5>
-                <p>New Visitors</p>
-                <div class="w3-grey">
-                    <div class="w3-container w3-center w3-padding w3-green"
-                        style="width:25%">+25%</div>
-                </div>
-
-                <p>New Users</p>
-                <div class="w3-grey">
-                    <div class="w3-container w3-center w3-padding w3-orange"
-                        style="width:50%">50%</div>
-                </div>
-
-                <p>Bounce Rate</p>
-                <div class="w3-grey">
-                    <div class="w3-container w3-center w3-padding w3-red"
-                        style="width:75%">75%</div>
-                </div>
-            </div>
-            <hr>
-
-            <div class="w3-container">
-                <h5>Countries</h5>
-                <table class="w3-table w3-striped w3-bordered w3-border
-                    w3-hoverable w3-white">
-                    <tr>
-                        <td>United States</td>
-                        <td>65%</td>
-                    </tr>
-                    <tr>
-                        <td>UK</td>
-                        <td>15.7%</td>
-                    </tr>
-                    <tr>
-                        <td>Russia</td>
-                        <td>5.6%</td>
-                    </tr>
-                    <tr>
-                        <td>Spain</td>
-                        <td>2.1%</td>
-                    </tr>
-                    <tr>
-                        <td>India</td>
-                        <td>1.9%</td>
-                    </tr>
-                    <tr>
-                        <td>France</td>
-                        <td>1.5%</td>
-                    </tr>
-                </table><br>
-                <button class="w3-button w3-dark-grey">More Countries <i
-                        class="fa fa-arrow-right"></i></button>
-            </div>
-            <hr>
-            <div class="w3-container">
-                <h5>Recent Users</h5>
-                <ul class="w3-ul w3-card-4 w3-white">
-                    <li class="w3-padding-16">
-                        <img src="/w3images/avatar2.png" class="w3-left
-                            w3-circle w3-margin-right" style="width:35px">
-                        <span class="w3-xlarge">Mike</span><br>
-                    </li>
-                    <li class="w3-padding-16">
-                        <img src="/w3images/avatar5.png" class="w3-left
-                            w3-circle w3-margin-right" style="width:35px">
-                        <span class="w3-xlarge">Jill</span><br>
-                    </li>
-                    <li class="w3-padding-16">
-                        <img src="/w3images/avatar6.png" class="w3-left
-                            w3-circle w3-margin-right" style="width:35px">
-                        <span class="w3-xlarge">Jane</span><br>
-                    </li>
-                </ul>
-            </div>
-            <hr>
-
-            <div class="w3-container">
-                <h5>Recent Comments</h5>
-                <div class="w3-row">
-                    <div class="w3-col m2 text-center">
-                        <img class="w3-circle" src="/w3images/avatar3.png"
-                            style="width:96px;height:96px">
-                    </div>
-                    <div class="w3-col m10 w3-container">
-                        <h4>John <span class="w3-opacity w3-medium">Sep 29,
-                                2014, 9:12 PM</span></h4>
-                        <p>Keep up the GREAT work! I am cheering for you!! Lorem
-                            ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</p><br>
-                    </div>
-                </div>
-
-                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-                <script type=text/javascript>
-                        $(function() {
-                          $('a#test').on('click', function(e) {
-                            e.preventDefault()
-                            $.getJSON('/background_process_test',
-                                function(data) {
-                              //do nothing
-                            });
-                            return false;
-                          });
-                        });
-                </script>
-                
-                
-                //button
-                <div class='container'>
-                    <h3>Test</h3>
-                        <form>
-                            <a href=# id=test><button class='btn btn-default'>Test</button></a>
-                        </form>
-                
-                </div>
-                <div class="w3-row">
-                    <div class="w3-col m2 text-center">
-                        <img class="w3-circle" src="/w3images/avatar1.png"
-                            style="width:96px;height:96px">
-                    </div>
-                    <div class="w3-col m10 w3-container">
-                        <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014,
-                                10:15 PM</span></h4>
-                        <p>Sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</p><br>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="w3-container w3-dark-grey w3-padding-32">
-                <div class="w3-row">
-                    <div class="w3-container w3-third">
-                        <h5 class="w3-bottombar w3-border-green">Demographic</h5>
-                        <p>Language</p>
-                        <p>Country</p>
-                        <p>City</p>
-                    </div>
-                    <div class="w3-container w3-third">
-                        <h5 class="w3-bottombar w3-border-red">System</h5>
-                        <p>Browser</p>
-                        <p>OS</p>
-                        <p>More</p>
-                    </div>
-                    <div class="w3-container w3-third">
-                        <h5 class="w3-bottombar w3-border-orange">Target</h5>
-                        <p>Users</p>
-                        <p>Active</p>
-                        <p>Geo</p>
-                        <p>Interests</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="w3-container w3-padding-16 w3-light-grey">
-                <h4>FOOTER</h4>
-                <p>Powered by <a
-                        href="https://www.w3schools.com/w3css/default.asp"
-                        target="_blank">w3.css</a></p>
-            </footer>
-
-            <!-- End page content -->
-        </div>
-
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+        <!--
         <script>
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
+            function SubForm (){
+                $.ajax({
+                    url:'https://api.apispreadsheets.com/data/8344/',
+                    type:'post',
+                    data:$("#myForm").serializeArray(),
+                    success: function(){
+                    alert("Form Submitted Successfully!")
+                    },
+                    error: function(){
+                    alert("Error: Form Not Submitted")
+                    }
+                });
+            }
+        </script>
+        -->
+        <script>
+            var start = "";
+            var end = "";
+            var dist = "";
+            var trans = "";
+            var stops = "";
+            function getVals(){
+                start = document.getElementById("start_station").value;
+                end = document.getElementById("end_station").value;
+                dist = document.querySelector('.dist').checked;
+                trans = document.querySelector('.trans').checked;
+                stops = document.querySelector('.stops').checked;
+            }
+            function visitPage(){
+                window.location = "visualize.html?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops;
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+            body{
+                text-align: center;
+                background-color: #FA8BFF;
+                background-image: url("../static/images/tokyo.jpg");
+                opacity: 0.97;
+                font-size: 18px;
+                font-family: 'Roboto', sans-serif;
+            }
+            input{
+                border-top: 1px;
+                border-left: none;
+                border-right:none;
+            }
+            #form{
+                background-color: white;
+                margin: 50px 350px 100px 350px;
+                padding: 40px 0 100px 0;
+                border-radius: 10px;
+                width: auto;
+                height: auto;
+            }
+            button{
+                background-color: #4f5652;
+                border:none;
+                color: white;
+                padding:20px 0 20px 0;
+                border-radius: 20px;
+                width:75%;
+                height:75%;
+                text-align: center;
+                font-size:25px;
+            }
 
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
+            button:hover{
+                background-color: #2BFF88;
 
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
-  }
-}
+            }
+            .writeInInputs{
+                padding-top:10px;   
+            }
+            .writeInInputs input{
+                width:75%;
+                border-top: 1px;
+                border-left: none;
+                border-right:none;
+                padding:15px;
+                text-align: left;
+            
 
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
-</script>
+            }
+
+            .writeInInputs h3{
+            text-align:left;
+            padding-left:12%;
+
+            }
+            .writeInInputs textarea{
+                width: 75%;
+                border-top: 1px;
+                border-left: none;
+                border-right:none;
+                padding-top:10px;   
+            }
+            #buttonBreak{
+                padding:75px;
+
+            }
+            .chooseInput{
+                text-align: left;
+                padding-left:12%;
+                padding-top:10px;
+            }
+            select{
+                width:50%;
+                height:50px;
+                background-color:whitesmoke;
+                border-radius:5px;
+                padding:5px;
+                border:none;
+            }
+            header {
+                color: rgb(255, 255, 255);
+                background-color: rgb(0, 0, 0);
+                padding: 10px 10px 40px 10px;
+                opacity: .8;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="title">Tokyo Metro Path Optimization</h1>
+        </header>
+        <div id="form">
+            <form id="myForm" action="javascript:void(0)">
+                <h2><label>Input Route Preferences</label></h2>
+                <div class="chooseInput">
+                    <h3><label>Starting Station </label></h3>
+                    <select id="start_station" name="start_station"> 
+                        <option value="disabled selected" >Select A Station</option>
+
+                        <option disabled="true" >Asakusa Line</option>
+                        <option value="A01">Nishi-magome</option>
+                        <option value="A02">Magome</option>
+                        <option value="A03">Nakanobu</option>
+                        <option value="A04">Togoshi</option>
+                        <option value="A05">Gotanda</option>
+                        <option value="A06">Takanawadai</option>
+                        <option value="A07">Sengakuji</option>
+                        <option value="A08">Mita</option>
+                        <option value="A09">Daimon</option>
+                        <option value="A10">Shimbashi</option>
+                        <option value="A11">Higashi-ginza</option>
+                        <option value="A12">Takaracho</option>
+                        <option value="A13">Nihombashi</option>
+                        <option value="A14">Ningyocho</option>
+                        <option value="A15">Higashi-nihombash</option>
+                        <option value="A16">Asakusabashi</option>
+                        <option value="A17">Kuramae</option>
+                        <option value="A18">Asakusa</option>
+                        <option value="A19">Honjo-azumabashi</option>
+                        <option value="A20">Oshiage</option>
+
+                        <option disabled="true" >Chiyoda Line</option>
+                        <option value="C01">Yoyogi-uehara</option>
+                        <option value="C02">Yoyogi-koen</option>
+                        <option value="C03">Meiji-jingumae</option>
+                        <option value="C04">Omote-sando</option>
+                        <option value="C05">Nogizaka</option>
+                        <option value="C06">Akasaka</option>
+                        <option value="C07">Kokkai-gijidomae</option>
+                        <option value="C08">Kasumigaseki</option>
+                        <option value="C09">Hibiya</option>
+                        <option value="C10">Nijubashimae &lt;Marunouchi&gt;</option>
+                        <option value="C11">Otemachi</option>
+                        <option value="C12">Shin-ochanomizu</option>
+                        <option value="C13">Yushima</option>
+                        <option value="C14">Nezu</option>
+                        <option value="C15">Sendagi</option>
+                        <option value="C16">Nishi-nippori</option>
+                        <option value="C17">Machiya</option>
+                        <option value="C18">Kita-senju</option>
+                        <option value="C19">Ayase</option>
+                        <option value="C20">Kita-Ayase</option>
+
+                        <option disabled="true" >Toei Oedo Line</option>
+                        <option value="E01">Shinjuku-nishiguchi</option>
+                        <option value="E02">Higashi-shinjuku</option>
+                        <option value="E03">Wakamatsu-kawada</option>
+                        <option value="E04">Ushigome-yanagicho</option>
+                        <option value="E05">Ushigome-kagurazaka</option>
+                        <option value="E06">Iidabashi</option>
+                        <option value="E07">Kasuga</option>
+                        <option value="E08">Hongo-sanchome</option>
+                        <option value="E09">Ueno-okachimachi</option>
+                        <option value="E10">Shin-okachimachi</option>
+                        <option value="E11">Kuramae</option>
+                        <option value="E12">Ryogoku</option>
+                        <option value="E13">Morishita</option>
+                        <option value="E14">Kiyosumi-shirakawa</option>
+                        <option value="E15">Monzen-nakacho</option>
+                        <option value="E16">Tsukishima</option>
+                        <option value="E17">Kachidoki</option>
+                        <option value="E18">Tsukijishijo</option>
+                        <option value="E19">Shiodome</option>
+                        <option value="E20">Daimon</option>
+                        <option value="E21">Akabanebashi</option>
+                        <option value="E22">Azabu-juban</option>
+                        <option value="E23">Roppongi</option>
+                        <option value="E24">Aoyama-itchome</option>
+                        <option value="E25">Kokuritsu-Kyogijo</option>
+                        <option value="E26">Yoyogi</option>
+                        <option value="E27">Shinjuku</option>
+                        <option value="E28">Tochomae</option>
+                        <option value="E29">Nishi-shinjuku-gochome</option>
+                        <option value="E30">Nakano-sakaue</option>
+                        <option value="E31">Higashi-Nakano</option>
+                        <option value="E32">Nakai</option>
+                        <option value="E33">Ochiai-minami-nagasaki</option>
+                        <option value="E34">Shin-egota</option>
+                        <option value="E35">Nerima</option>
+                        <option value="E36">Toshimaen</option>
+                        <option value="E37">Nerima-kasugacho</option>
+                        <option value="E38">Hikarigaoka</option>
+
+                        <option disabled="true" >Fukutoshin Line</option>
+                        <option value="F01">Wakoshi</option>
+                        <option value="F02">Chikatetsu-narimasu</option>
+                        <option value="F03">Chikatetsu-akatsuka</option>
+                        <option value="F04">Heiwadai</option>
+                        <option value="F05">Hikawadai</option>
+                        <option value="F06">Kotake-mukaihara</option>
+                        <option value="F07">Senkawa</option>
+                        <option value="F08">Kanamecho</option>
+                        <option value="F09">Ikebukuro</option>
+                        <option value="F10">Zoshigaya</option>
+                        <option value="F11">Nishi-waseda</option>
+                        <option value="F12">Higashi-shinjuku</option>
+                        <option value="F13">Shinjuku-sanchome</option>
+                        <option value="F14">Kita-sando</option>
+                        <option value="F15">Meiji-jingumae&lt;Harajuku&gt;</option>
+                        <option value="F16">Shibuya</option>
+
+                        <option disabled="true" >Ginza Line</option>
+                        <option value="G01">Shibuya</option>
+                        <option value="G02">Omote-sando</option>
+                        <option value="G03">Gaiemmae</option>
+                        <option value="G04">Aoyama-itchome</option>
+                        <option value="G05">Akasaka-mitsuke</option>
+                        <option value="G06">Tameike-sanno</option>
+                        <option value="G07">Toranomon</option>
+                        <option value="G08">Shimbashi</option>
+                        <option value="G09">Ginza</option>
+                        <option value="G10">Kyobashi</option>
+                        <option value="G11">Nihombashi</option>
+                        <option value="G12">Mitsukoshimae</option>
+                        <option value="G13">Kanda</option>
+                        <option value="G14">Suehirocho</option>
+                        <option value="G15">Ueno-hirokoji</option>
+                        <option value="G16">Ueno</option>
+                        <option value="G17">Inaricho</option>
+                        <option value="G18">Tawaramachi</option>
+                        <option value="G19">Asakusa</option>
+
+                        <option disabled="true" >Hibiya Line</option>
+                        <option value="H01">Naka-meguro</option>
+                        <option value="H02">Ebisu</option>
+                        <option value="H03">Hiro-o</option>
+                        <option value="H04">Roppongi</option>
+                        <option value="H05">Kamiyacho</option>
+                        <option value="H06">Toranomon-hills</option>
+                        <option value="H07">Kasumigaseki</option>
+                        <option value="H08">Hibiya</option>
+                        <option value="H09">Ginza</option>
+                        <option value="H10">Higashi-ginza</option>
+                        <option value="H11">Tsukiji</option>
+                        <option value="H12">Hatchobori</option>
+                        <option value="H13">Kayabacho</option>
+                        <option value="H14">Ningyocho</option>
+                        <option value="H15">Kodemmacho</option>
+                        <option value="H16">Akihabara</option>
+                        <option value="H17">Naka-okachimachi</option>
+                        <option value="H18">Ueno</option>
+                        <option value="H19">Iriya</option>
+                        <option value="H20">Minowa</option>
+                        <option value="H21">Minami-senju</option>
+                        <option value="H22">Kita-senju</option>
+
+                        <option disabled="true" >Mita Line</option>
+                        <option value="I01">Meguro</option>
+                        <option value="I02">Shirokanedai</option>
+                        <option value="I03">Shirokane-takanawa</option>
+                        <option value="I04">Mita</option>
+                        <option value="I05">Shibakoen</option>
+                        <option value="I06">Onarimon</option>
+                        <option value="I07">Uchisaiwaicho</option>
+                        <option value="I08">Hibiya</option>
+                        <option value="I09">Otemachi</option>
+                        <option value="I10">Jimbocho</option>
+                        <option value="I11">Suidobashi</option>
+                        <option value="I12">Kasuga</option>
+                        <option value="I13">Hakusan</option>
+                        <option value="I14">Sengoku</option>
+                        <option value="I15">Sugamo</option>
+                        <option value="I16">Nishi-sugamo</option>
+                        <option value="I17">Shin-itabashi</option>
+                        <option value="I18">Itabashikuyakushomae</option>
+                        <option value="I19">Itabashihoncho</option>
+                        <option value="I20">Motohasunuma</option>
+                        <option value="I21">Shimura-sakaue</option>
+                        <option value="I22">Shimura-sanchome</option>
+                        <option value="I23">Hasune</option>
+                        <option value="I24">Nishidai</option>
+                        <option value="I25">Takashimadaira</option>
+                        <option value="I26">Shin-takashimadaira</option>
+                        <option value="I27">Nishi-takashimadaira</option>
+
+                        <option disabled="true" >Marunouchi Line</option>
+                        <option value="M01">Ogikubo</option>
+                        <option value="M02">Minami-asagaya</option>
+                        <option value="M03">Sin-koenji</option>
+                        <option value="M04">Higashi-koenji</option>
+                        <option value="M05">Shin-nakano</option>
+                        <option value="M06">Nakano-sakaue</option>
+                        <option value="M07">Nishi-shinjuku</option>
+                        <option value="M08">Shinjuku-nishiguchi</option>
+                        <option value="M09">Shinjuku-sanchome</option>
+                        <option value="M10">Shinjuku-gyoemmae</option>
+                        <option value="M11">Yotsuya-sanchome</option>
+                        <option value="M12">Yotasuya</option>
+                        <option value="M13">Akasaka-mutsuke</option>
+                        <option value="M14">Kokki-gijidomae</option>
+                        <option value="M15">Kasumigaseki</option>
+                        <option value="M16">Ginza</option>
+                        <option value="M17">Tokyo</option>
+                        <option value="M18">Otemachi</option>
+                        <option value="M19">Awajicho</option>
+                        <option value="M20">Ochanomizu</option>
+                        <option value="M21">Hongo-sanchome</option>
+                        <option value="M22">Korakuen</option>
+                        <option value="M23">Myogadani</option>
+                        <option value="M24">Shin-otsuka</option>
+                        <option value="M25">Ikebukuro</option>
+
+                        <option disabled="true" >Marunouchi Line Branch Line</option>
+                        <option value="Mb03">Nonancho</option>
+                        <option value="Mb04">Nakano-fujimicho</option>
+                        <option value="Mb05">Nakano-shimbashi</option>
+
+                        <option disabled="true" >Namboku Line</option>
+                        <option value="N01">Meguro</option>
+                        <option value="N02">Shirokanedai</option>
+                        <option value="N03">Shirokane-takanawa</option>
+                        <option value="N04">Azabu-juban</option>
+                        <option value="N05">Roppongi-itchome</option>
+                        <option value="N06">Tameike-sanno</option>
+                        <option value="N07">Nagatacho</option>
+                        <option value="N08">Yotsuya</option>
+                        <option value="N09">Ichigaya</option>
+                        <option value="N10">Iidabashi</option>
+                        <option value="N11">Korakuen</option>
+                        <option value="N12">Todaimae</option>
+                        <option value="N13">Hon-komagome</option>
+                        <option value="N14">Komagome</option>
+                        <option value="N15">Nishigahara</option>
+                        <option value="N16">Oji</option>
+                        <option value="N17">Oji-kamiya</option>
+                        <option value="N18">Shimo</option>
+                        <option value="N19">Akabane-iwabuchi</option>
+
+                        <option disabled="true" >Shinjuku Line</option>
+                        <option value="S01">Shinjuku</option>
+                        <option value="S02">Shinjuku-sanchome</option>
+                        <option value="S03">Akebonobashi</option>
+                        <option value="S04">Ichigaya</option>
+                        <option value="S05">Kudanshita</option>
+                        <option value="S06">Jimbocho</option>
+                        <option value="S07">Ogawamachi</option>
+                        <option value="S08">Iwamotocho</option>
+                        <option value="S09">Bakuro-yokoyama</option>
+                        <option value="S10">Hamacho</option>
+                        <option value="S11">Morishita</option>
+                        <option value="S12">Kikukawa</option>
+                        <option value="S13">Sumiyoshi</option>
+                        <option value="S14">Nishi-ojima</option>
+                        <option value="S15">Ojima</option>
+                        <option value="S16">Higashi-ojima</option>
+                        <option value="S17">Funabori</option>
+                        <option value="S18">Ichinoe</option>
+                        <option value="S19">Mizue</option>
+                        <option value="S20">Shinozaki</option>
+                        <option value="S21">Motoyawata</option>
+                        
+                        <option disabled="true" >Tozai Line</option>
+                        <option value="T01">Nakano</option>
+                        <option value="T02">Ochiai</option>
+                        <option value="T03">Takadanobaba</option>
+                        <option value="T04">Waseda</option>
+                        <option value="T05">Kagurazaka</option>
+                        <option value="T06">Iidabashi</option>
+                        <option value="T07">Kudanshita</option>
+                        <option value="T08">Takebashi</option>
+                        <option value="T09">Otemachi</option>
+                        <option value="T10">Nihombashi</option>
+                        <option value="T11">Kayabacho</option>
+                        <option value="T12">Monzen-nakacho</option>
+                        <option value="T13">Kiba</option>
+                        <option value="T14">Toyocho</option>
+                        <option value="T15">Minami-sunamachi</option>
+                        <option value="T16">Nishi-kasai</option>
+                        <option value="T17">Kasai</option>
+                        <option value="T18">Urayasu</option>
+                        <option value="T19">Minami-gyotoku</option>
+                        <option value="T20">Gyotoku</option>
+                        <option value="T21">Myoden</option>
+                        <option value="T22">Baraki-nakayama</option>
+                        <option value="T23">Nishi-funabashi</option>
+
+                        <option disabled="true" >Yurakucho Line</option>
+                        <option value="Y01">Wakoshi</option>
+                        <option value="Y02">Chikatetsu-narimasu</option>
+                        <option value="Y03">Chikatetsu-akatsuka</option>
+                        <option value="Y04">Heiwadai</option>
+                        <option value="Y05">Hikawadai</option>
+                        <option value="Y06">Kotake-mukaihara</option>
+                        <option value="Y07">Senkawa</option>
+                        <option value="Y08">Kanamecho</option>
+                        <option value="Y09">Ikebukuro</option>
+                        <option value="Y10">Higashi-ikebukuro</option>
+                        <option value="Y11">Gokokuji</option>
+                        <option value="Y12">Edogawabashi</option>
+                        <option value="Y13">Iidabashi</option>
+                        <option value="Y14">Ichigaya</option>
+                        <option value="Y15">Kojimachi</option>
+                        <option value="Y16">Nagatacho</option>
+                        <option value="Y17">Sakuradamon</option>
+                        <option value="Y18">Yurakucho</option>
+                        <option value="Y19">Ginza-itchome</option>
+                        <option value="Y20">Shintomicho</option>
+                        <option value="Y21">Tsukishima</option>
+                        <option value="Y22">Toyosu</option>
+                        <option value="Y23">Tatsumi</option>
+                        <option value="Y24">Shin-kiba</option>
+
+                        <option disabled="true" >Hanzomon Line</option>
+                        <option value="Z01">Shibuya</option>
+                        <option value="Z02">Omote-sando</option>
+                        <option value="Z03">Aoyama-itchome</option>
+                        <option value="Z04">Nagatacho</option>
+                        <option value="Z05">Hanzomon</option>
+                        <option value="Z06">Kudanshita</option>
+                        <option value="Z07">Jimbocho</option>
+                        <option value="Z08">Otemachi</option>
+                        <option value="Z09">Mitsukoshimae</option>
+                        <option value="Z10">Suitengumae</option>
+                        <option value="Z11">Kiyosumi-shirakawa</option>
+                        <option value="Z12">Sumiyoshi</option>
+                        <option value="Z13">Kinshicho</option>
+                        <option value="Z14">Oshiage&lt;SKYTREE&gt;</option>
+                    </select>
+                    <br/>
+                </div>
+
+                <div class="chooseInput">
+                    <h3><label>Ending Station </label></h3>
+                    <select id="end_station" name="end_station"> 
+                        <option value="disabled selected" >Select A Station</option>
+
+                        <option disabled="true" >Asakusa Line</option>
+                        <option value="A01">Nishi-magome</option>
+                        <option value="A02">Magome</option>
+                        <option value="A03">Nakanobu</option>
+                        <option value="A04">Togoshi</option>
+                        <option value="A05">Gotanda</option>
+                        <option value="A06">Takanawadai</option>
+                        <option value="A07">Sengakuji</option>
+                        <option value="A08">Mita</option>
+                        <option value="A09">Daimon</option>
+                        <option value="A10">Shimbashi</option>
+                        <option value="A11">Higashi-ginza</option>
+                        <option value="A12">Takaracho</option>
+                        <option value="A13">Nihombashi</option>
+                        <option value="A14">Ningyocho</option>
+                        <option value="A15">Higashi-nihombash</option>
+                        <option value="A16">Asakusabashi</option>
+                        <option value="A17">Kuramae</option>
+                        <option value="A18">Asakusa</option>
+                        <option value="A19">Honjo-azumabashi</option>
+                        <option value="A20">Oshiage</option>
+
+                        <option disabled="true" >Chiyoda Line</option>
+                        <option value="C01">Yoyogi-uehara</option>
+                        <option value="C02">Yoyogi-koen</option>
+                        <option value="C03">Meiji-jingumae</option>
+                        <option value="C04">Omote-sando</option>
+                        <option value="C05">Nogizaka</option>
+                        <option value="C06">Akasaka</option>
+                        <option value="C07">Kokkai-gijidomae</option>
+                        <option value="C08">Kasumigaseki</option>
+                        <option value="C09">Hibiya</option>
+                        <option value="C10">Nijubashimae &lt;Marunouchi&gt;</option>
+                        <option value="C11">Otemachi</option>
+                        <option value="C12">Shin-ochanomizu</option>
+                        <option value="C13">Yushima</option>
+                        <option value="C14">Nezu</option>
+                        <option value="C15">Sendagi</option>
+                        <option value="C16">Nishi-nippori</option>
+                        <option value="C17">Machiya</option>
+                        <option value="C18">Kita-senju</option>
+                        <option value="C19">Ayase</option>
+                        <option value="C20">Kita-Ayase</option>
+
+                        <option disabled="true" >Toei Oedo Line</option>
+                        <option value="E01">Shinjuku-nishiguchi</option>
+                        <option value="E02">Higashi-shinjuku</option>
+                        <option value="E03">Wakamatsu-kawada</option>
+                        <option value="E04">Ushigome-yanagicho</option>
+                        <option value="E05">Ushigome-kagurazaka</option>
+                        <option value="E06">Iidabashi</option>
+                        <option value="E07">Kasuga</option>
+                        <option value="E08">Hongo-sanchome</option>
+                        <option value="E09">Ueno-okachimachi</option>
+                        <option value="E10">Shin-okachimachi</option>
+                        <option value="E11">Kuramae</option>
+                        <option value="E12">Ryogoku</option>
+                        <option value="E13">Morishita</option>
+                        <option value="E14">Kiyosumi-shirakawa</option>
+                        <option value="E15">Monzen-nakacho</option>
+                        <option value="E16">Tsukishima</option>
+                        <option value="E17">Kachidoki</option>
+                        <option value="E18">Tsukijishijo</option>
+                        <option value="E19">Shiodome</option>
+                        <option value="E20">Daimon</option>
+                        <option value="E21">Akabanebashi</option>
+                        <option value="E22">Azabu-juban</option>
+                        <option value="E23">Roppongi</option>
+                        <option value="E24">Aoyama-itchome</option>
+                        <option value="E25">Kokuritsu-Kyogijo</option>
+                        <option value="E26">Yoyogi</option>
+                        <option value="E27">Shinjuku</option>
+                        <option value="E28">Tochomae</option>
+                        <option value="E29">Nishi-shinjuku-gochome</option>
+                        <option value="E30">Nakano-sakaue</option>
+                        <option value="E31">Higashi-Nakano</option>
+                        <option value="E32">Nakai</option>
+                        <option value="E33">Ochiai-minami-nagasaki</option>
+                        <option value="E34">Shin-egota</option>
+                        <option value="E35">Nerima</option>
+                        <option value="E36">Toshimaen</option>
+                        <option value="E37">Nerima-kasugacho</option>
+                        <option value="E38">Hikarigaoka</option>
+
+                        <option disabled="true" >Fukutoshin Line</option>
+                        <option value="F01">Wakoshi</option>
+                        <option value="F02">Chikatetsu-narimasu</option>
+                        <option value="F03">Chikatetsu-akatsuka</option>
+                        <option value="F04">Heiwadai</option>
+                        <option value="F05">Hikawadai</option>
+                        <option value="F06">Kotake-mukaihara</option>
+                        <option value="F07">Senkawa</option>
+                        <option value="F08">Kanamecho</option>
+                        <option value="F09">Ikebukuro</option>
+                        <option value="F10">Zoshigaya</option>
+                        <option value="F11">Nishi-waseda</option>
+                        <option value="F12">Higashi-shinjuku</option>
+                        <option value="F13">Shinjuku-sanchome</option>
+                        <option value="F14">Kita-sando</option>
+                        <option value="F15">Meiji-jingumae&lt;Harajuku&gt;</option>
+                        <option value="F16">Shibuya</option>
+
+                        <option disabled="true" >Ginza Line</option>
+                        <option value="G01">Shibuya</option>
+                        <option value="G02">Omote-sando</option>
+                        <option value="G03">Gaiemmae</option>
+                        <option value="G04">Aoyama-itchome</option>
+                        <option value="G05">Akasaka-mitsuke</option>
+                        <option value="G06">Tameike-sanno</option>
+                        <option value="G07">Toranomon</option>
+                        <option value="G08">Shimbashi</option>
+                        <option value="G09">Ginza</option>
+                        <option value="G10">Kyobashi</option>
+                        <option value="G11">Nihombashi</option>
+                        <option value="G12">Mitsukoshimae</option>
+                        <option value="G13">Kanda</option>
+                        <option value="G14">Suehirocho</option>
+                        <option value="G15">Ueno-hirokoji</option>
+                        <option value="G16">Ueno</option>
+                        <option value="G17">Inaricho</option>
+                        <option value="G18">Tawaramachi</option>
+                        <option value="G19">Asakusa</option>
+
+                        <option disabled="true" >Hibiya Line</option>
+                        <option value="H01">Naka-meguro</option>
+                        <option value="H02">Ebisu</option>
+                        <option value="H03">Hiro-o</option>
+                        <option value="H04">Roppongi</option>
+                        <option value="H05">Kamiyacho</option>
+                        <option value="H06">Toranomon-hills</option>
+                        <option value="H07">Kasumigaseki</option>
+                        <option value="H08">Hibiya</option>
+                        <option value="H09">Ginza</option>
+                        <option value="H10">Higashi-ginza</option>
+                        <option value="H11">Tsukiji</option>
+                        <option value="H12">Hatchobori</option>
+                        <option value="H13">Kayabacho</option>
+                        <option value="H14">Ningyocho</option>
+                        <option value="H15">Kodemmacho</option>
+                        <option value="H16">Akihabara</option>
+                        <option value="H17">Naka-okachimachi</option>
+                        <option value="H18">Ueno</option>
+                        <option value="H19">Iriya</option>
+                        <option value="H20">Minowa</option>
+                        <option value="H21">Minami-senju</option>
+                        <option value="H22">Kita-senju</option>
+
+                        <option disabled="true" >Mita Line</option>
+                        <option value="I01">Meguro</option>
+                        <option value="I02">Shirokanedai</option>
+                        <option value="I03">Shirokane-takanawa</option>
+                        <option value="I04">Mita</option>
+                        <option value="I05">Shibakoen</option>
+                        <option value="I06">Onarimon</option>
+                        <option value="I07">Uchisaiwaicho</option>
+                        <option value="I08">Hibiya</option>
+                        <option value="I09">Otemachi</option>
+                        <option value="I10">Jimbocho</option>
+                        <option value="I11">Suidobashi</option>
+                        <option value="I12">Kasuga</option>
+                        <option value="I13">Hakusan</option>
+                        <option value="I14">Sengoku</option>
+                        <option value="I15">Sugamo</option>
+                        <option value="I16">Nishi-sugamo</option>
+                        <option value="I17">Shin-itabashi</option>
+                        <option value="I18">Itabashikuyakushomae</option>
+                        <option value="I19">Itabashihoncho</option>
+                        <option value="I20">Motohasunuma</option>
+                        <option value="I21">Shimura-sakaue</option>
+                        <option value="I22">Shimura-sanchome</option>
+                        <option value="I23">Hasune</option>
+                        <option value="I24">Nishidai</option>
+                        <option value="I25">Takashimadaira</option>
+                        <option value="I26">Shin-takashimadaira</option>
+                        <option value="I27">Nishi-takashimadaira</option>
+
+                        <option disabled="true" >Marunouchi Line</option>
+                        <option value="M01">Ogikubo</option>
+                        <option value="M02">Minami-asagaya</option>
+                        <option value="M03">Sin-koenji</option>
+                        <option value="M04">Higashi-koenji</option>
+                        <option value="M05">Shin-nakano</option>
+                        <option value="M06">Nakano-sakaue</option>
+                        <option value="M07">Nishi-shinjuku</option>
+                        <option value="M08">Shinjuku-nishiguchi</option>
+                        <option value="M09">Shinjuku-sanchome</option>
+                        <option value="M10">Shinjuku-gyoemmae</option>
+                        <option value="M11">Yotsuya-sanchome</option>
+                        <option value="M12">Yotasuya</option>
+                        <option value="M13">Akasaka-mutsuke</option>
+                        <option value="M14">Kokki-gijidomae</option>
+                        <option value="M15">Kasumigaseki</option>
+                        <option value="M16">Ginza</option>
+                        <option value="M17">Tokyo</option>
+                        <option value="M18">Otemachi</option>
+                        <option value="M19">Awajicho</option>
+                        <option value="M20">Ochanomizu</option>
+                        <option value="M21">Hongo-sanchome</option>
+                        <option value="M22">Korakuen</option>
+                        <option value="M23">Myogadani</option>
+                        <option value="M24">Shin-otsuka</option>
+                        <option value="M25">Ikebukuro</option>
+
+                        <option disabled="true" >Marunouchi Line Branch Line</option>
+                        <option value="Mb03">Nonancho</option>
+                        <option value="Mb04">Nakano-fujimicho</option>
+                        <option value="Mb05">Nakano-shimbashi</option>
+
+                        <option disabled="true" >Namboku Line</option>
+                        <option value="N01">Meguro</option>
+                        <option value="N02">Shirokanedai</option>
+                        <option value="N03">Shirokane-takanawa</option>
+                        <option value="N04">Azabu-juban</option>
+                        <option value="N05">Roppongi-itchome</option>
+                        <option value="N06">Tameike-sanno</option>
+                        <option value="N07">Nagatacho</option>
+                        <option value="N08">Yotsuya</option>
+                        <option value="N09">Ichigaya</option>
+                        <option value="N10">Iidabashi</option>
+                        <option value="N11">Korakuen</option>
+                        <option value="N12">Todaimae</option>
+                        <option value="N13">Hon-komagome</option>
+                        <option value="N14">Komagome</option>
+                        <option value="N15">Nishigahara</option>
+                        <option value="N16">Oji</option>
+                        <option value="N17">Oji-kamiya</option>
+                        <option value="N18">Shimo</option>
+                        <option value="N19">Akabane-iwabuchi</option>
+
+                        <option disabled="true" >Shinjuku Line</option>
+                        <option value="S01">Shinjuku</option>
+                        <option value="S02">Shinjuku-sanchome</option>
+                        <option value="S03">Akebonobashi</option>
+                        <option value="S04">Ichigaya</option>
+                        <option value="S05">Kudanshita</option>
+                        <option value="S06">Jimbocho</option>
+                        <option value="S07">Ogawamachi</option>
+                        <option value="S08">Iwamotocho</option>
+                        <option value="S09">Bakuro-yokoyama</option>
+                        <option value="S10">Hamacho</option>
+                        <option value="S11">Morishita</option>
+                        <option value="S12">Kikukawa</option>
+                        <option value="S13">Sumiyoshi</option>
+                        <option value="S14">Nishi-ojima</option>
+                        <option value="S15">Ojima</option>
+                        <option value="S16">Higashi-ojima</option>
+                        <option value="S17">Funabori</option>
+                        <option value="S18">Ichinoe</option>
+                        <option value="S19">Mizue</option>
+                        <option value="S20">Shinozaki</option>
+                        <option value="S21">Motoyawata</option>
+                        
+                        <option disabled="true" >Tozai Line</option>
+                        <option value="T01">Nakano</option>
+                        <option value="T02">Ochiai</option>
+                        <option value="T03">Takadanobaba</option>
+                        <option value="T04">Waseda</option>
+                        <option value="T05">Kagurazaka</option>
+                        <option value="T06">Iidabashi</option>
+                        <option value="T07">Kudanshita</option>
+                        <option value="T08">Takebashi</option>
+                        <option value="T09">Otemachi</option>
+                        <option value="T10">Nihombashi</option>
+                        <option value="T11">Kayabacho</option>
+                        <option value="T12">Monzen-nakacho</option>
+                        <option value="T13">Kiba</option>
+                        <option value="T14">Toyocho</option>
+                        <option value="T15">Minami-sunamachi</option>
+                        <option value="T16">Nishi-kasai</option>
+                        <option value="T17">Kasai</option>
+                        <option value="T18">Urayasu</option>
+                        <option value="T19">Minami-gyotoku</option>
+                        <option value="T20">Gyotoku</option>
+                        <option value="T21">Myoden</option>
+                        <option value="T22">Baraki-nakayama</option>
+                        <option value="T23">Nishi-funabashi</option>
+
+                        <option disabled="true" >Yurakucho Line</option>
+                        <option value="Y01">Wakoshi</option>
+                        <option value="Y02">Chikatetsu-narimasu</option>
+                        <option value="Y03">Chikatetsu-akatsuka</option>
+                        <option value="Y04">Heiwadai</option>
+                        <option value="Y05">Hikawadai</option>
+                        <option value="Y06">Kotake-mukaihara</option>
+                        <option value="Y07">Senkawa</option>
+                        <option value="Y08">Kanamecho</option>
+                        <option value="Y09">Ikebukuro</option>
+                        <option value="Y10">Higashi-ikebukuro</option>
+                        <option value="Y11">Gokokuji</option>
+                        <option value="Y12">Edogawabashi</option>
+                        <option value="Y13">Iidabashi</option>
+                        <option value="Y14">Ichigaya</option>
+                        <option value="Y15">Kojimachi</option>
+                        <option value="Y16">Nagatacho</option>
+                        <option value="Y17">Sakuradamon</option>
+                        <option value="Y18">Yurakucho</option>
+                        <option value="Y19">Ginza-itchome</option>
+                        <option value="Y20">Shintomicho</option>
+                        <option value="Y21">Tsukishima</option>
+                        <option value="Y22">Toyosu</option>
+                        <option value="Y23">Tatsumi</option>
+                        <option value="Y24">Shin-kiba</option>
+
+                        <option disabled="true" >Hanzomon Line</option>
+                        <option value="Z01">Shibuya</option>
+                        <option value="Z02">Omote-sando</option>
+                        <option value="Z03">Aoyama-itchome</option>
+                        <option value="Z04">Nagatacho</option>
+                        <option value="Z05">Hanzomon</option>
+                        <option value="Z06">Kudanshita</option>
+                        <option value="Z07">Jimbocho</option>
+                        <option value="Z08">Otemachi</option>
+                        <option value="Z09">Mitsukoshimae</option>
+                        <option value="Z10">Suitengumae</option>
+                        <option value="Z11">Kiyosumi-shirakawa</option>
+                        <option value="Z12">Sumiyoshi</option>
+                        <option value="Z13">Kinshicho</option>
+                        <option value="Z14">Oshiage&lt;SKYTREE&gt;</option>
+                    </select>
+                    <br/>
+                </div>
+                <div class="chooseInput">
+                    <h3><label>Preferences</label></h3>
+                    <input type="checkbox" id="dist" name="dist" class = "dist" value="distance"/> Least Distance<br/>
+                    <input type="checkbox" id="trans" name="trans" class = "trans" value="transfers" /> Least numbers of transfers <br/>
+                    <input type="checkbox" id="stops" name="stops" class = "stops" value="stops" /> Least number of stops<br/>
+                </div>
+            </form>
+            <div id="buttonBreak">
+                <button onclick = "getVals(); visitPage()"> Find A Route </button>
+            </div>
+        </div>
     </body>
 </html>
