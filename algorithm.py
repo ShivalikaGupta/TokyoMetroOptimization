@@ -10,7 +10,7 @@ def index():
 @app.route("/results")
 def results():
     return render_template('visualize.html')
-    
+
 #background process happening without any refreshing
 @app.route('/background_process_test')
 def background_process_test():
@@ -43,7 +43,7 @@ def generate_path(start, goal, successor_f, heuristic):
       for successor in successor_f(node):
           frontier.add(
               successor,
-              priority = distance[node] + 1 + heuristic(successor) # we may have to change this as this determines which stop we take next at each step
+              priority = distance[node] + 1 + heuristic(node, successor) # we may have to change this as this determines which stop we take next at each step
           )
           if (successor not in distance
               or distance[node] + 1 < distance[successor]):
@@ -51,4 +51,5 @@ def generate_path(start, goal, successor_f, heuristic):
               history[successor] = node
   return None
 
-
+path = generate_path("A01", "C01", get_successor_function(), get_heuristic())
+print(len(path))
