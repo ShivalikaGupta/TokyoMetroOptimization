@@ -4,6 +4,8 @@
     <head>
         <title>W3.CSS Template</title>
         <meta charset="UTF-8">
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://d3js.org/topojson.v3.min.js"></script>    
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet"
@@ -66,12 +68,36 @@
 
             <div class="w3-panel">
                 <div class="w3-row-padding" style="margin:0 -16px">
-                    <div class="w3-twothird">
+                    <!-- <div class="w3-twothird"> -->
                         <h5>Regions</h5>
-                        <img src="/w3images/region.jpg" style="width:100%"
-                            alt="Google Regional Map">
-                    </div>
-                    <div class="w3-third">
+                        <svg id="tokyo" height="1000" width="1500" style="margin:5px"></svg>
+                        <script>
+                            const map = d3.select("svg#tokyo");
+                            let width = map.attr("width")
+                            let height = map.attr("height")
+                            const requestData = async function() {
+                                
+                                const data = await d3.json("../static/images/tokyo.geojson");
+                                console.log(data);
+                                const path = d3.geoPath().projection(d3.geoConicConformal()
+                                // .parallels([33, 45])
+                                .translate([width, height])
+                                .center([-2000,-20])
+                                // .scaleExtent(10)
+                                .rotate([96, 65])
+                                // 
+                                .fitSize([width*2, height*2], data));
+                                let boroughs = map.selectAll("path")
+                                    .data(data.features)
+                                    .enter().append("path")
+                                    .attr("d", path)
+                                    .style("stroke", "#000")
+                                    .style("stroke-width", 1)
+                                    .attr("id", "nycPath")
+                            }
+                            requestData();
+                        </script>
+                    <!-- </div> -->
                         <h5>Feeds</h5>
                         <table class="w3-table w3-striped w3-white">
                             <tr>
@@ -98,7 +124,6 @@
                             </tr>
 
                         </table>
-                    </div>
                 </div>
             </div>
 

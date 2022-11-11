@@ -38,12 +38,19 @@
             }
             function visitPage(){
                 //call algorithm function
-                result = " noooo "
-                $.getJSON('/background_process_test', function(data) {
-                    console.log(data)
+                var result ="";
+                fetch('/background_process_test').then(function (response) {
+                    return response.json();
+                }).then(function (text) {
+                    console.log('GET response:');
+                    console.log(text.greeting);
+                    window.location = "results?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops + "&res=" + text.greeting;
                 });
+                // $.getJSON('/background_process_test', function(data) {
+                //     console.log(data)
+                // });
                 //console.log(results.data);
-                window.location = "results?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops + "&res=" + result;
+                
             }
         </script>
         <style>

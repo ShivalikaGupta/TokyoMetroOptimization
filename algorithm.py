@@ -1,5 +1,5 @@
 from library import *
-from flask import Flask, render_template, Response, request, redirect, url_for
+from flask import Flask, render_template, Response, request, redirect, url_for, jsonify
 app = Flask(__name__)
 
 #rendering the HTML page which has the button
@@ -15,7 +15,8 @@ def results():
 @app.route('/background_process_test')
 def background_process_test():
     print ("Hello")
-    return ("nothing")
+    message = {'greeting':'Hello from Flask!'}
+    return jsonify(message)
 
 if __name__ == "__main__":
     app.run(debug=True)
