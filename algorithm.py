@@ -16,9 +16,11 @@ def results():
 def background_process_test():
     start = request.args.get('start')
     end = request.args.get('end')
-    path = generate_path(start , end , get_successor, get_distance_to_goal)
-    print(path)
-    result = {'greeting': path}
+    calc = calculate(start , end , get_successor, get_distance_to_goal)
+    print(calc['path'])
+    print(calc["distance"])
+    print(calc["transfers"])
+    result = {'path' : calc["path"], 'distance' : calc["distance"], 'transfers' : calc['transfers']}
     return jsonify(result)
 
 if __name__ == "__main__":
