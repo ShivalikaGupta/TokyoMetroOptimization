@@ -22,8 +22,12 @@ class PriorityQueue:
 loc = open("locations.json")
 location_data = json.load(loc)
 succ = open("connections.json")
-
 location_data2 = json.load(succ)
+name = open("stations.json", encoding="utf8")
+station_data = json.load(name)
+
+def get_station_name(stationId):
+    return station_data["stations"][stationId]["name_en"]
 
 def get_distance_to_goal(current, goal):
     #print("current: " + current + ",  goal:" + goal)

@@ -23,6 +23,14 @@ def background_process_test():
     result = {'path' : calc["path"], 'distance' : calc["distance"], 'transfers' : calc['transfers']}
     return jsonify(result)
 
+@app.route('/get_name')
+def get_name():
+    curr = request.args.get('curr')
+    out =   get_station_name(curr)
+    result = {'curr': out}
+    return jsonify(result)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 

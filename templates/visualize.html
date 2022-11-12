@@ -130,30 +130,11 @@
             <div class="w3-container">
                 <h5>Stations Along The Path</h5>
                 <table class="w3-table w3-striped w3-bordered w3-border
-                    w3-hoverable w3-white">
+                    w3-hoverable w3-white" id = "pathTable">
                     <tr>
-                        <td>United States</td>
-                        <td>65%</td>
-                    </tr>
-                    <tr>
-                        <td>UK</td>
-                        <td>15.7%</td>
-                    </tr>
-                    <tr>
-                        <td>Russia</td>
-                        <td>5.6%</td>
-                    </tr>
-                    <tr>
-                        <td>Spain</td>
-                        <td>2.1%</td>
-                    </tr>
-                    <tr>
-                        <td>India</td>
-                        <td>1.9%</td>
-                    </tr>
-                    <tr>
-                        <td>France</td>
-                        <td>1.5%</td>
+                        <td>Number</td>
+                        <td>Stop Name</td>
+                        <td>Station ID</td>
                     </tr>
                 </table><br>
                 
@@ -194,6 +175,36 @@
         console.log(dist);
         const trans = urlParams.get('t');
         const stops = urlParams.get('st');
+        var path = urlParams.get('path');
+        var count = 1;
+        
+        var table = document.getElementById('pathTable')
+        console.log(typeof(path));
+        path = path.split(",");
+        console.log(typeof(path));
+        path.forEach(ele => {
+            var name = "";
+            fetch('/get_name?curr=' + ele).then(function (response) {
+                    return response.json();
+                }).then(function (text) {
+                    console.log(text.curr)
+                    name = text.curr;
+                    var newRow = table.insertRow();
+                    var countCell = newRow.insertCell();
+                    var countText = document.createTextNode(String(count));
+                    count +=1;
+                    countCell.appendChild(countText);
+                    var newCell = newRow.insertCell();
+                    var newText = document.createTextNode(name)
+                    newCell.appendChild(newText);
+                    var stationIDcell = newRow.insertCell()
+                    var stationIDText = document.createTextNode(ele)
+                    stationIDcell.appendChild(stationIDText);
+                });
+
+
+            
+        });
         var dist_div = document.getElementById( 'dist' );
         var stops_div = document.getElementById( 'stops' );
         var transfers_div = document.getElementById( 'transfers' );
