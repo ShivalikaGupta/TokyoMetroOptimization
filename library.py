@@ -40,6 +40,9 @@ def get_distance_to_goal(current, goal):
     distance = math.sqrt(horizontal + vertical)* 110.574
     return distance
 
+def get_average_stops():
+    return None
+
 
 def get_successor(node):
   successors = location_data2[node]

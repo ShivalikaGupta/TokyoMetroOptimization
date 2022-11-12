@@ -100,21 +100,18 @@
                     <!-- </div> -->
                         <h5>Feeds</h5>
                         <table class="w3-table w3-striped w3-white">
-                            <tr>
+                            <tr id = "t_distance">
                                 <td><i class="fa fa-map-o w3-text-blue w3-large"></i></td>
                                 <td>Total Distance: </td>
-                                <td><i>10 miles</i></td>
                             </tr>
-                            <tr>
+                            <tr id = "num_stops">
                                 <td><i class="fa fa-minus-circle w3-text-red w3-large"></i></td>
                                 <td>Number of stops: </td>
-                                <td><i>15 stops</i></td>
                             </tr>
-                            <tr>
+                            <tr id = "num_transfers">
                                 <td><i class="fa fa-share-alt w3-text-orange
                                         w3-large"></i></td>
                                 <td>Number of transfers: </td>
-                                <td><i>5 transfers</i></td>
                             </tr>
                             <tr>
                                 <td><i class="fa fa-plus-square w3-text-green
@@ -178,7 +175,7 @@
         var path = urlParams.get('path');
         var count = 1;
         
-        var table = document.getElementById('pathTable')
+        var table = document.getElementById('pathTable');
         console.log(typeof(path));
         path = path.split(",");
         console.log(typeof(path));
@@ -206,8 +203,26 @@
             
         });
         var dist_div = document.getElementById( 'dist' );
-        var stops_div = document.getElementById( 'stops' );
         var transfers_div = document.getElementById( 'transfers' );
+        var stops_div = document.getElementById( 'stops' );;
+        console.log(dist_div)
+        const distance = urlParams.get('distance');
+        const transfers = urlParams.get('transfers');
+        const stops_2 = path.length;
+        
+        
+        var dist_row = document.getElementById('t_distance');
+        var distcell = dist_row.insertCell();
+        var distText = document.createTextNode(distance );
+        distcell.appendChild(distText);
+        var stop_row = document.getElementById('num_stops');
+        var stopcell = stop_row.insertCell();
+        var stopText = document.createTextNode(String(stops_2));
+        stopcell.appendChild(stopText);
+        var transfers_row = document.getElementById('num_transfers');
+        var transferscell = transfers_row.insertCell();
+        var transfersText = document.createTextNode(transfers);
+        transferscell.appendChild(transfersText);
         if (dist === "false") {
             dist_div.style.display = "none";
         }
