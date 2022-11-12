@@ -14,13 +14,16 @@ def results():
 #background process happening without any refreshing
 @app.route('/background_process_test')
 def background_process_test():
-    print ("Hello")
-    message = {'greeting':'Hello from Flask!'}
-    return jsonify(message)
+    start = request.args.get('start')
+    end = request.args.get('end')
+    path = generate_path(start , end , get_successor, get_distance_to_goal)
+    print(path)
+    result = {'greeting': path}
+    return jsonify(result)
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-path = generate_path("A01", "C01", get_successor, get_distance_to_goal)
-print(len(path))
-print(path)
+# path = generate_path("A01", "C01", get_successor, get_distance_to_goal)
+# print(len(path))
+# print(path)

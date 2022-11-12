@@ -39,7 +39,7 @@
             function visitPage(){
                 //call algorithm function
                 var result ="";
-                fetch('/background_process_test').then(function (response) {
+                fetch('/background_process_test?start=' + start + '&end=' + end).then(function (response) {
                     return response.json();
                 }).then(function (text) {
                     console.log('GET response:');
