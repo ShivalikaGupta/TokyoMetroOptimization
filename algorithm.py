@@ -16,7 +16,14 @@ def results():
 def background_process_test():
     start = request.args.get('start')
     end = request.args.get('end')
-    calc = calculate(start , end , get_successor, get_distance_to_goal)
+    dist = request.args.get('d')
+    trans = request.args.get('t')
+    stops = request.args.get('st')
+    # call get_heuristic with different parameters (if a param is true we use that heuristic)
+    # param 1: minimize distance traveled
+    # param 2: minimize transfers
+    # param 3: minimize stops
+    calc = calculate(start , end, dist, trans, stops)
     print(calc['path'])
     print(calc["distance"])
     print(calc["transfers"])

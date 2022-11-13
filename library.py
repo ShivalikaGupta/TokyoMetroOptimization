@@ -29,7 +29,8 @@ station_data = json.load(name)
 def get_station_name(stationId):
     return station_data["stations"][stationId]["name_en"]
 
-def get_distance_to_goal(current, goal):
+#get distance from current station to goal station
+def distance_heuristic(current, goal):
     #print("current: " + current + ",  goal:" + goal)
     x1 = location_data[current]['latitude']
     x2 = location_data[goal]['latitude']
@@ -40,6 +41,27 @@ def get_distance_to_goal(current, goal):
     distance = math.sqrt(horizontal + vertical)* 110.574
     return distance
 
+#add positive weight to stops that are on the same line as the current station
+def transfer_heuristic(current, succ):
+    if(current[0] == succ[0]):
+        #we would rather travel up to 2 km then switch to a different line
+        return 0
+    return 2
+
+def stop_heuristic(succ, goal):
+    # we calculated 0.91794871794 stops per km on the metro system, so we 
+    # estimate the future number of stops using this value times the km to the goal state
+    return 0.91794871794 * distance_heuristic(succ, goal)
+
+def get_heuristic(distance, transfer, stops, current, succ, goal):
+    value = 0
+    if(distance):
+        value += distance_heuristic(succ, goal)
+    if(transfer):
+        value += transfer_heuristic(current, succ)
+    if(stops):
+        value += stop_heuristic(succ, goal)
+    return value
 
 def get_successor(node):
   successors = location_data2[node]
@@ -85,7 +107,7 @@ def get_distance(path):
 # goal: train station we are trying to get to
 # successor: how we pick the next stop
 # heuristic: how we evaluate the possible next stops
-def generate_path(start, goal, successor_f, heuristic):
+def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, stops_h):
   visited = set()
   history = dict()
   distance = {start: 0}
@@ -93,26 +115,29 @@ def generate_path(start, goal, successor_f, heuristic):
   frontier.add(start)
   while frontier:
       node = frontier.pop()
+      print("node = " + node)
       if node in visited:
           continue
       if goal == node:#change this to be if the node == goal station
           return reconstruct_path(history, start, node)
       visited.add(node)
       for successor in successor_f(node):
+          print(successor)
           frontier.add(
               successor,
-              priority = distance[node] + 1 + heuristic(node, successor) # we may have to change this as this determines which stop we take next at each step
+              priority = distance[node] + 1 + heuristic(distance_h, transfer_h, stops_h, node, successor, goal) # we may have to change this as this determines which stop we take next at each step
           )
-          if (successor not in distance
-              or distance[node] + 1 < distance[successor]):
+          if (successor not in distance or distance[node] + 1 < distance[successor]):
               distance[successor] = distance[node] + 1
               history[successor] = node
   return None
 
-def calculate(start, goal, successor_f, heuristic):
-    temp = generate_path(start , goal , get_successor, get_distance_to_goal)
+def calculate(start, goal, distance_h, transfer_h, stops_h):
+    print("helloooo")
+    temp = generate_path(start , goal , get_successor, get_heuristic, distance_h, transfer_h, stops_h)
     result = {}
     result["path"] = temp
+    print(temp)
     result["distance"] = get_distance(temp)
     result["transfers"] = get_transfers(temp)
     return result
