@@ -39,7 +39,7 @@
             <div class="w3-container" style="padding-top:22px">
                 <h5><b><i class="fa fa-dashboard"></i> Reducing: </b></h5>
             </div>
-
+            <div class="w3-panel">
             <div class="w3-row-padding w3-margin-bottom">
                 <div class="w3-third">
                     <div class="w3-container w3-blue w3-padding-16" id = "dist">
@@ -65,16 +65,125 @@
                     </div>
                 </div>
             </div>
-
+        </div>
             <div class="w3-panel">
                 <div class="w3-row-padding" style="margin:0 -16px">
-                    <!-- <div class="w3-twothird"> -->
-                        <h5>Regions</h5>
-                        <svg id="tokyo" height="1000" width="1500" style="margin:5px"></svg>
+                  
+                  <div class="w3-twothird">
+                    <h5>Regions</h5>
+                    <svg id="tokyo" height="500" width="960" style="margin:5px"></svg>
                         <script>
                             const map = d3.select("svg#tokyo");
-                            let width = map.attr("width")
-                            let height = map.attr("height")
+                            let width = map.attr("width");
+                            let height = map.attr("height");
+                            let viewport = map.append("g");
+                            const requestData = async function() {
+                                
+                                const data = await d3.json("../static/images/tokyo.geojson");
+                                console.log(data);
+                                //viewport.attr("transform", "translate (-150, -100)");
+                                var projection = d3.geoMercator()
+                                        .center([-1000, -60 ])
+                                        .scale(150)
+                                        .rotate([-180,0])
+                                        .fitSize([width*2, height*4.5], data)
+                                        .clipExtent([[200, 0],[600, 300]]);
+                                        
+                                var path = d3.geoPath()
+                                            .projection(projection);
+                                // viewport.attr("transform", "scale(5)");
+                                
+                                // const path = d3.geoPath().projection(d3.geoConicConformal()
+                                // // 
+                                // // .scaleExtent([1, 10]).scale(1).translate([0, 0])
+                                // .rotate([96, 65])
+                                // .fitSize([width*2, height*2], data)
+                                // //.scale(1)
+                                // // .translate([2, 2])
+                                // //
+                                // //.scaleExtent(2)
+                                
+                                // .clipExtent([[width/3, height/8],[width,height/2]])
+                                
+                                // // .center([20,20])
+                                // // 
+                                // );
+                                let boroughs = viewport.selectAll("path")
+                                    .data(data.features)
+                                    .enter().append("path")
+                                    .attr("d", path)
+                                    .style("stroke", "#000")
+                                    .style("stroke-width", 1)
+                                    .attr("id", "nycPath");
+                                // const transform = {k: 8.808098366584408, x: -2700.945642323929, y: -1550.6131159310576};
+                                // viewport.attr("transform", transform.toString() );
+                                // viewport.select(".zips-outline")
+                                //         .style("stroke-width", 1 / transform.k);
+                                // map.call(d3.zoom());
+                                var zoom = d3.zoom()
+                                    .scaleExtent([1,10])
+                                    .on("zoom", mapZoomed);
+
+                                map.call(zoom);
+
+                                function mapZoomed({transform}) { 
+                                    console.log(transform);
+                                    viewport.attr("transform", transform.toString() );
+                                    viewport.select(".zips-outline")
+                                            .style("stroke-width", 1 / transform.k);
+                                }
+                            }
+                            requestData();
+                        </script>
+                  </div>
+                  <div class="w3-third">
+                    <div class="w3-container">
+                        <h5>Stations Along The Path</h5>
+                        <table class="w3-table w3-striped w3-bordered w3-border
+                            w3-hoverable w3-white" id = "pathTable">
+                            <tr>
+                                <td>Number</td>
+                                <td>Stop Name</td>
+                                <td>Station ID</td>
+                            </tr>
+                        </table><br>
+                        
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h5>Feeds</h5>
+                        <table class="w3-table w3-striped w3-white">
+                            <tr id = "t_distance">
+                                <td><i class="fa fa-map-o w3-text-blue w3-large"></i></td>
+                                <td>Total Distance: </td>
+                            </tr>
+                            <tr id = "num_stops">
+                                <td><i class="fa fa-minus-circle w3-text-red w3-large"></i></td>
+                                <td>Number of stops: </td>
+                            </tr>
+                            <tr id = "num_transfers">
+                                <td><i class="fa fa-share-alt w3-text-orange
+                                        w3-large"></i></td>
+                                <td>Number of transfers: </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-plus-square w3-text-green
+                                        w3-large"></i></td>
+                                <td>Add a new station: </td>
+                                <td><i>Yes</i></td>
+                            </tr>
+
+                        </table>
+                <!-- <div class="w3-row-padding" style="margin:0 -16px">
+                    <div class="w3-twothird">
+                        <h5>Regions</h5>
+                        <svg id="tokyo" height="600" width="600" style="margin:5px"></svg>
+                        <script>
+                            const map = d3.select("svg#tokyo");
+                            let width = map.attr("width");
+                            let height = map.attr("height");
+                            let viewport = map.append("g");
                             const requestData = async function() {
                                 
                                 const data = await d3.json("../static/images/tokyo.geojson");
@@ -86,18 +195,30 @@
                                 // .scaleExtent(10)
                                 .rotate([96, 65])
                                 // 
-                                .fitSize([width*2, height*2], data));
-                                let boroughs = map.selectAll("path")
+                                .fitSize([width, height], data));
+                                let boroughs = viewport.selectAll("path")
                                     .data(data.features)
                                     .enter().append("path")
                                     .attr("d", path)
                                     .style("stroke", "#000")
                                     .style("stroke-width", 1)
-                                    .attr("id", "nycPath")
+                                    .attr("id", "nycPath");
+                                var zoom = d3.zoom()
+                                    .scaleExtent([1,10])
+                                    .on("zoom", mapZoomed);
+
+                                map.call(zoom);
+
+                                function mapZoomed({transform}) { 
+                                    viewport.attr("transform", transform.toString() );
+                                    viewport.select(".zips-outline")
+                                            .style("stroke-width", 1 / transform.k);
+                                }
                             }
                             requestData();
                         </script>
-                    <!-- </div> -->
+                    </div>
+                    <div class="w3-onethird">
                         <h5>Feeds</h5>
                         <table class="w3-table w3-striped w3-white">
                             <tr id = "t_distance">
@@ -121,23 +242,13 @@
                             </tr>
 
                         </table>
+                    </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="w3-container">
-                <h5>Stations Along The Path</h5>
-                <table class="w3-table w3-striped w3-bordered w3-border
-                    w3-hoverable w3-white" id = "pathTable">
-                    <tr>
-                        <td>Number</td>
-                        <td>Stop Name</td>
-                        <td>Station ID</td>
-                    </tr>
-                </table><br>
-                
-            </div>
+           
             <hr>
-        </div>
+
         <hr>
         <div class="w3-container">
             <h5>General Stats</h5>
