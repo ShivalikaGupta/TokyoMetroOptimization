@@ -27,7 +27,7 @@ def background_process_test():
     print(calc['path'])
     print(calc["distance"])
     print(calc["transfers"])
-    result = {'path' : calc["path"], 'distance' : calc["distance"], 'transfers' : calc['transfers']}
+    result = {'path' : calc["path"], 'distance' : calc["distance"], 'transfers' : calc['transfers'], 'added' : calc['added']}
     return jsonify(result)
 
 @app.route('/get_name')

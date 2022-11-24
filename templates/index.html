@@ -43,8 +43,10 @@
                     return response.json();
                 }).then(function (text) {
                     console.log('GET response:');
+                    console.log(text);
                     console.log(text.path);
-                    window.location = "results?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops + "&path=" + text.path + "&distance=" + text.distance + "&transfers=" + text.transfers;
+                    console.log(text.added);
+                    window.location = "results?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops + "&path=" + text.path + "&distance=" + text.distance + "&transfers=" + text.transfers + "&added=" + text.added;
                 });
                 // $.getJSON('/background_process_test', function(data) {
                 //     console.log(data)

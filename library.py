@@ -23,6 +23,8 @@ loc = open("locations.json")
 location_data = json.load(loc)
 succ = open("connections.json")
 location_data2 = json.load(succ)
+succ2 = open("connections2.json")
+location_data3 = json.load(succ2)
 name = open("stations.json", encoding="utf8")
 station_data = json.load(name)
 
@@ -63,7 +65,7 @@ def get_heuristic(distance, transfer, stops, current, succ, goal):
         value += stop_heuristic(succ, goal)
     return value
 
-def get_successor(node):
+def get_successor(node, location_data2):
   successors = location_data2[node]
   names = []
   for i in successors:
@@ -91,7 +93,7 @@ def get_transfers(path):
             transfers += 1
     return transfers
 
-def get_distance(path):
+def get_distance(path, location_data2):
     distance = 0
     for i in range(0, len(path)-1):
         connections = location_data2[path[i]]
@@ -107,7 +109,7 @@ def get_distance(path):
 # goal: train station we are trying to get to
 # successor: how we pick the next stop
 # heuristic: how we evaluate the possible next stops
-def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, stops_h):
+def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, stops_h, location_data2 = location_data2):
   visited = set()
   history = dict()
   distance = {start: 0}
@@ -121,7 +123,7 @@ def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, s
       if goal == node:#change this to be if the node == goal station
           return reconstruct_path(history, start, node)
       visited.add(node)
-      for successor in successor_f(node):
+      for successor in successor_f(node, location_data2):
           print(successor)
           frontier.add(
               successor,
@@ -134,10 +136,21 @@ def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, s
 
 def calculate(start, goal, distance_h, transfer_h, stops_h):
     print("helloooo")
-    temp = generate_path(start , goal , get_successor, get_heuristic, distance_h, transfer_h, stops_h)
+    temp = generate_path(start , goal , get_successor, get_heuristic, distance_h, transfer_h, stops_h, location_data2)
+    temp2 = generate_path(start , goal , get_successor, get_heuristic, distance_h, transfer_h, stops_h, location_data3)
     result = {}
     result["path"] = temp
     print(temp)
-    result["distance"] = get_distance(temp)
+    result["distance"] = get_distance(temp, location_data2)
     result["transfers"] = get_transfers(temp)
+    result["added"] = "No"
+    result2 = {}
+    result2["path"] = temp2
+    result2["distance"] = get_distance(temp2, location_data3)
+    result2["transfers"] = get_transfers(temp2)
+    result2["added"] = "Yes"
+    if result["distance"] > result2["distance"]:
+        return result2 
     return result
+
+

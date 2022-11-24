@@ -80,7 +80,7 @@
                             const requestData = async function() {
                                 
                                 const data = await d3.json("../static/images/tokyo.geojson");
-                                console.log(data);
+                                //console.log(data);
                                 //viewport.attr("transform", "translate (-150, -100)");
                                 var projection = d3.geoMercator()
                                         .center([-1000, -60 ])
@@ -127,7 +127,7 @@
                                 map.call(zoom);
 
                                 function mapZoomed({transform}) { 
-                                    console.log(transform);
+                                    //console.log(transform);
                                     viewport.attr("transform", transform.toString() );
                                     viewport.select(".zips-outline")
                                             .style("stroke-width", 1 / transform.k);
@@ -167,11 +167,10 @@
                                         w3-large"></i></td>
                                 <td>Number of transfers: </td>
                             </tr>
-                            <tr>
+                            <tr id = "added_station">
                                 <td><i class="fa fa-plus-square w3-text-green
                                         w3-large"></i></td>
                                 <td>Add a new station: </td>
-                                <td><i>Yes</i></td>
                             </tr>
 
                         </table>
@@ -280,22 +279,22 @@
         const start_station = urlParams.get('s');
         const end_station = urlParams.get('e');
         const dist = urlParams.get('d');
-        console.log(dist);
+        //console.log(dist);
         const trans = urlParams.get('t');
         const stops = urlParams.get('st');
         var path = urlParams.get('path');
         var count = 1;
         
         var table = document.getElementById('pathTable');
-        console.log(typeof(path));
+        //console.log(typeof(path));
         path = path.split(",");
-        console.log(typeof(path));
+        //console.log(typeof(path));
         path.forEach(ele => {
             var name = "";
             fetch('/get_name?curr=' + ele).then(function (response) {
                     return response.json();
                 }).then(function (text) {
-                    console.log(text.curr)
+                    //console.log(text.curr)
                     name = text.curr;
                     var newRow = table.insertRow();
                     var countCell = newRow.insertCell();
@@ -315,12 +314,12 @@
         });
         var dist_div = document.getElementById( 'dist' );
         var transfers_div = document.getElementById( 'transfers' );
-        var stops_div = document.getElementById( 'stops' );;
-        console.log(dist_div)
+        var stops_div = document.getElementById( 'stops' );
+        
         const distance = urlParams.get('distance');
         const transfers = urlParams.get('transfers');
         const stops_2 = path.length;
-        
+        const added = urlParams.get('added');
         
         var dist_row = document.getElementById('t_distance');
         var distcell = dist_row.insertCell();
@@ -334,6 +333,10 @@
         var transferscell = transfers_row.insertCell();
         var transfersText = document.createTextNode(transfers);
         transferscell.appendChild(transfersText);
+        var added_row = document.getElementById('added_station');
+        var addedcell = added_row.insertCell();
+        var addedText = document.createTextNode(added);
+        addedcell.appendChild(addedText);
         if (dist === "false") {
             dist_div.style.display = "none";
         }
