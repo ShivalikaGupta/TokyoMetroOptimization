@@ -28,6 +28,9 @@ location_data3 = json.load(succ2)
 name = open("stations.json", encoding="utf8")
 station_data = json.load(name)
 
+def all_locations():
+    return location_data
+
 def get_station_name(stationId):
     return station_data["stations"][stationId]["name_en"]
 
@@ -144,12 +147,15 @@ def calculate(start, goal, distance_h, transfer_h, stops_h):
     result["distance"] = get_distance(temp, location_data2)
     result["transfers"] = get_transfers(temp)
     result["added"] = "No"
+    result["percent"] = 0
     result2 = {}
     result2["path"] = temp2
     result2["distance"] = get_distance(temp2, location_data3)
     result2["transfers"] = get_transfers(temp2)
     result2["added"] = "Yes"
     if result["distance"] > result2["distance"]:
+        percent =  result["distance"]- result2["distance"]/ result["distance"]
+        result2["percent"] = percent
         return result2 
     return result
 

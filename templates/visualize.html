@@ -25,6 +25,12 @@
                 font-size: 20px;
                 text-align: center;
             }
+            .tokyo {
+                fill: #EEE;
+                stroke: rgb(185, 181, 181);
+                stroke-width: 1px;
+            }
+  
         </style>
     </head>
     <body class="w3-light-grey">
@@ -71,7 +77,7 @@
                   
                   <div class="w3-twothird">
                     <h5>Regions</h5>
-                    <svg id="tokyo" height="500" width="960" style="margin:5px"></svg>
+                    <svg id="tokyo" height="500" width="1500" style="margin:5px"></svg>
                         <script>
                             const map = d3.select("svg#tokyo");
                             let width = map.attr("width");
@@ -83,11 +89,14 @@
                                 //console.log(data);
                                 //viewport.attr("transform", "translate (-150, -100)");
                                 var projection = d3.geoMercator()
-                                        .center([-1000, -60 ])
-                                        .scale(150)
+                                        .center([-1000, 60 ])
+                                        .scale(500)
+                                        .translate([width/2, height/2])
+
                                         .rotate([-180,0])
+                                        .clipExtent([[800, 0],[900, 60]])
                                         .fitSize([width*2, height*4.5], data)
-                                        .clipExtent([[200, 0],[600, 300]]);
+                                        ;
                                         
                                 var path = d3.geoPath()
                                             .projection(projection);
@@ -108,13 +117,40 @@
                                 // // .center([20,20])
                                 // // 
                                 // );
-                                let boroughs = viewport.selectAll("path")
+                                let boroughs = viewport.selectAll("path.tokyo")
                                     .data(data.features)
                                     .enter().append("path")
                                     .attr("d", path)
-                                    .style("stroke", "#000")
-                                    .style("stroke-width", 1)
-                                    .attr("id", "nycPath");
+                                    .attr("class", "tokyo");
+                                    // .style("stroke", "#000")
+                                    // .style("stroke-width", 1);
+                                var path = urlParams.get('path');
+                                path = path.split(",");
+                                fetch("/all_locations").then(function (response) {
+                                    return response.json();
+                                }).then(function (text) {
+                                    //console.log(text.curr)
+                                    locs = text.locations;
+                                    for (const [key, value] of Object.entries(locs)) {
+                                        locs[key]["color"] = "black";
+                                    }
+                                    // locs.forEach(ele => {
+                                    //     ele["color"] = "black";
+                                    // })
+                                    path.forEach(ele => {
+                                        locs[ele]["color"] = "red";
+                                        console.log(locs[ele]["color"]);
+                                    });
+                                    console.log(locs)
+                                    viewport.selectAll("circle").data(Object.values(locs))
+                                        .join("circle")
+                                        .attr("r", d=> {if (d.color === "black"){ return 0.3} else{ return 0.6}})
+                                        .attr("fill", d=> d["color"])
+                                        // .attr("opacity", 0.4)
+                                        .attr("cx", d => projection( [Number(d.longitude), Number(d.latitude)])[0])
+                                        .attr("cy", d => projection( [Number(d.longitude), Number(d.latitude)])[1]);
+                                    });
+
                                 // const transform = {k: 8.808098366584408, x: -2700.945642323929, y: -1550.6131159310576};
                                 // viewport.attr("transform", transform.toString() );
                                 // viewport.select(".zips-outline")
@@ -170,7 +206,7 @@
                             <tr id = "added_station">
                                 <td><i class="fa fa-plus-square w3-text-green
                                         w3-large"></i></td>
-                                <td>Add a new station: </td>
+                                <td>Add a new connection: </td>
                             </tr>
 
                         </table>
@@ -249,28 +285,16 @@
             <hr>
 
         <hr>
-        <div class="w3-container">
-            <h5>General Stats</h5>
-            <p>New Visitors</p>
-            <div class="w3-grey">
+        <div class="w3-container" id = "stats">
+            <h5>Stats</h5>
+            <p>Adding a connection would decrease distance travelled by:</p>
+            <div class="w3-grey" >
                 <div class="w3-container w3-center w3-padding w3-green"
-                    style="width:25%">+25%</div>
-            </div>
-
-            <p>New Users</p>
-            <div class="w3-grey">
-                <div class="w3-container w3-center w3-padding w3-orange"
-                    style="width:50%">50%</div>
-            </div>
-
-            <p>Bounce Rate</p>
-            <div class="w3-grey">
-                <div class="w3-container w3-center w3-padding w3-red"
-                    style="width:75%">75%</div>
+                id = "distance_improvement" ></div>
             </div>
         </div>
         <hr>
-        <a href="index.html"><button class="w3-button w3-dark-grey ">New Path  <i
+        <a href="/"><button class="w3-button w3-dark-grey ">New Path  <i
             class="fa fa-arrow-right"></i></button></a>
     </body>
     <script>
@@ -288,38 +312,77 @@
         var table = document.getElementById('pathTable');
         //console.log(typeof(path));
         path = path.split(",");
+        
         //console.log(typeof(path));
+        async function path_information(ele) {
+            // var names = [];
+
+                
+                // var name = "";
+                const response = await fetch('/get_name?curr=' + ele);
+                const name = await response.json();
+                return name;
+                // .then(function (response) {
+                //         return response.json();
+                //     }).then(function (text) {
+                //         //console.log(text.curr)
+                //         name = text.curr;
+                //         var curr = {};
+                //         curr["name"] = name;
+                //         curr["id"] = ele
+                //         names.push(curr);
+                        // var newRow = table.insertRow();
+                        // var countCell = newRow.insertCell();
+                        // var countText = document.createTextNode(String(count));
+                        // count +=1;
+                        // countCell.appendChild(countText);
+                        // var newCell = newRow.insertCell();
+                        // var newText = document.createTextNode(name)
+                        // newCell.appendChild(newText);
+                        // var stationIDcell = newRow.insertCell()
+                        // var stationIDText = document.createTextNode(ele)
+                        // stationIDcell.appendChild(stationIDText);
+            //         });
+
+                
+            // });
+            // return names;
+        }
         path.forEach(ele => {
-            var name = "";
-            fetch('/get_name?curr=' + ele).then(function (response) {
-                    return response.json();
-                }).then(function (text) {
-                    //console.log(text.curr)
-                    name = text.curr;
-                    var newRow = table.insertRow();
-                    var countCell = newRow.insertCell();
-                    var countText = document.createTextNode(String(count));
-                    count +=1;
-                    countCell.appendChild(countText);
-                    var newCell = newRow.insertCell();
-                    var newText = document.createTextNode(name)
-                    newCell.appendChild(newText);
-                    var stationIDcell = newRow.insertCell()
-                    var stationIDText = document.createTextNode(ele)
-                    stationIDcell.appendChild(stationIDText);
-                });
-
-
-            
+            path_information(ele).then(curr =>{
+                const name = curr.curr;
+                var newRow = table.insertRow();
+                var countCell = newRow.insertCell();
+                var countText = document.createTextNode(String(count));
+                count +=1;
+                countCell.appendChild(countText);
+                var newCell = newRow.insertCell();
+                var newText = document.createTextNode(name)
+                newCell.appendChild(newText);
+                var stationIDcell = newRow.insertCell()
+                var stationIDText = document.createTextNode(ele)
+                stationIDcell.appendChild(stationIDText);
+            })
         });
+        // const call_path_information = async function() {
+        //     const names = await path_information();
+        //     console.log(names);
+        //     names.forEach(ele =>{
+
+        //     })
+        // };
+        // call_path_information();
         var dist_div = document.getElementById( 'dist' );
         var transfers_div = document.getElementById( 'transfers' );
         var stops_div = document.getElementById( 'stops' );
+        var stats_div = document.getElementById( 'stats');
+        
         
         const distance = urlParams.get('distance');
         const transfers = urlParams.get('transfers');
         const stops_2 = path.length;
         const added = urlParams.get('added');
+        const percent = urlParams.get('percent');
         
         var dist_row = document.getElementById('t_distance');
         var distcell = dist_row.insertCell();
@@ -346,5 +409,13 @@
         if (stops === "false") {
             stops_div.style.display = 'none';
         }
+        
+        if (percent == 0) {
+            stats_div.style.display = 'none';
+        }
+        var distance_improvement_div = document.getElementById( 'distance_improvement');
+        var percentText = document.createTextNode("+" + percent + "%");
+        distance_improvement_div.appendChild(percentText);
+        distance_improvement_div.style.width= percent + "%";
     </script>
 </html>

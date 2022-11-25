@@ -27,7 +27,8 @@ def background_process_test():
     print(calc['path'])
     print(calc["distance"])
     print(calc["transfers"])
-    result = {'path' : calc["path"], 'distance' : calc["distance"], 'transfers' : calc['transfers'], 'added' : calc['added']}
+    print(calc["percent"])
+    result = {'path' : calc["path"], 'distance' : calc["distance"], 'transfers' : calc['transfers'], 'added' : calc['added'], 'percent' : calc["percent"]}
     return jsonify(result)
 
 @app.route('/get_name')
@@ -35,6 +36,12 @@ def get_name():
     curr = request.args.get('curr')
     out =   get_station_name(curr)
     result = {'curr': out}
+    return jsonify(result)
+
+@app.route('/all_locations')
+def locations():
+    out =   all_locations()
+    result = {'locations': out}
     return jsonify(result)
 
 
