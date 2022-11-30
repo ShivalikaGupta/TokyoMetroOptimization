@@ -66,6 +66,7 @@ def get_heuristic(distance, transfer, stops, current, succ, goal):
         value += get_distance(current, succ)
     if(transfer):
         heur += transfer_heuristic(current, succ) 
+        value += transfer_heuristic(current, succ) 
     if(stops):
         heur += stop_heuristic(succ, goal) + 1
         value += 1
@@ -123,31 +124,32 @@ def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, s
   frontier.add(start)
   while frontier:
       node = frontier.pop()
-      print("node = " + node)
+    #   print("node = " + node)
       if node in visited:
           continue
       if goal == node:#change this to be if the node == goal station
           return reconstruct_path(history, start, node)
       visited.add(node)
       for successor in successor_f(node, location_data2):
-          print(successor)
+        #   print(successor)
           heur, value = heuristic(distance_h, transfer_h, stops_h, node, successor, goal)
           frontier.add(
               successor,
               priority = distance[node] + heur # we may have to change this as this determines which stop we take next at each step
           )
+
           if (successor not in distance or distance[node] + value < distance[successor]):
               distance[successor] = distance[node] + value
               history[successor] = node
   return None
 
 def calculate(start, goal, distance_h, transfer_h, stops_h):
-    print("helloooo")
+    # print("helloooo")
     temp = generate_path(start , goal , get_successor, get_heuristic, distance_h, transfer_h, stops_h, location_data2)
     temp2 = generate_path(start , goal , get_successor, get_heuristic, distance_h, transfer_h, stops_h, location_data3)
     result = {}
     result["path"] = temp
-    print(temp)
+    # print(temp)
     result["distance"] = get_distance(temp, location_data2)
     result["transfers"] = get_transfers(temp)
     result["added"] = "No"
