@@ -59,14 +59,17 @@ def stop_heuristic(succ, goal):
     return 0.91794871794 * distance_heuristic(succ, goal)
 
 def get_heuristic(distance, transfer, stops, current, succ, goal):
+    heur = 0
     value = 0
     if(distance):
-        value += distance_heuristic(succ, goal)
+        heur += distance_heuristic(succ, goal) + get_distance(current, succ)
+        value += get_distance(current, succ)
     if(transfer):
-        value += transfer_heuristic(current, succ)
+        heur += transfer_heuristic(current, succ) 
     if(stops):
-        value += stop_heuristic(succ, goal)
-    return value
+        heur += stop_heuristic(succ, goal) + 1
+        value += 1
+    return heur, value
 
 def get_successor(node, location_data2):
   successors = location_data2[node]
@@ -128,12 +131,13 @@ def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, s
       visited.add(node)
       for successor in successor_f(node, location_data2):
           print(successor)
+          heur, value = heuristic(distance_h, transfer_h, stops_h, node, successor, goal)
           frontier.add(
               successor,
-              priority = distance[node] + 1 + heuristic(distance_h, transfer_h, stops_h, node, successor, goal) # we may have to change this as this determines which stop we take next at each step
+              priority = distance[node] + heur # we may have to change this as this determines which stop we take next at each step
           )
-          if (successor not in distance or distance[node] + 1 < distance[successor]):
-              distance[successor] = distance[node] + 1
+          if (successor not in distance or distance[node] + value < distance[successor]):
+              distance[successor] = distance[node] + value
               history[successor] = node
   return None
 
