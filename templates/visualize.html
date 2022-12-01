@@ -139,9 +139,9 @@
                                     // })
                                     path.forEach(ele => {
                                         locs[ele]["color"] = "red";
-                                        console.log(locs[ele]["color"]);
+                                        // console.log(locs[ele]["color"]);
                                     });
-                                    console.log(locs)
+                                    // console.log(locs)
                                     viewport.selectAll("circle").data(Object.values(locs))
                                         .join("circle")
                                         .attr("r", d=> {if (d.color === "black"){ return 0.3} else{ return 0.6}})

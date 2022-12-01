@@ -42,11 +42,11 @@
                 fetch('/background_process_test?start=' + start + '&end=' + end).then(function (response) {
                     return response.json();
                 }).then(function (text) {
-                    console.log('GET response:');
-                    console.log(text);
-                    console.log(text.path);
-                    console.log(text.added);
-                    console.log(text.percent)
+                    // console.log('GET response:');
+                    // console.log(text);
+                    // console.log(text.path);
+                    // console.log(text.added);
+                    // console.log(text.percent)
                     window.location = "results?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops + "&path=" + text.path + "&distance=" + text.distance + "&transfers=" + text.transfers + "&added=" + text.added + "&percent=" + text.percent;
                 });
                 // $.getJSON('/background_process_test', function(data) {

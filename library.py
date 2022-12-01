@@ -54,7 +54,7 @@ def transfer_heuristic(current, succ):
     if(current[0] == succ[0]):
         #we would rather travel up to 2 km then switch to a different line
         return 0
-    return 2
+    return 5
 
 def stop_heuristic(succ, goal):
     # we calculated 0.91794871794 stops per km on the metro system, so we 
@@ -168,6 +168,7 @@ def calculate(start, goal, distance_h, transfer_h, stops_h):
         return result2 
     return result
 
+<<<<<<< HEAD
 def dfs(start, goal):
     stack = [((start, 0), [start])]
     shortest_distance = sys.maxsize
@@ -208,3 +209,31 @@ print("time elapsed: " + str(end - start))
 
 
 
+=======
+def test_algo():
+    found = False
+    for distance1 in range(0,2):
+        for distance2 in range(0,2):
+            for transfers1 in range(0,2):
+                for transfers2 in range(0,2):
+                    for stops1 in range(0,2):
+                        for stops2 in range(0,2):
+                            if not (distance1 == distance2 and transfers1 == transfers2 and stops1 == stops2) and not (distance1 == transfers1 == stops1 == 0 or distance2 == transfers2 == stops2 == 0 ):
+                                for station1 in location_data:
+                                    for station2 in location_data:
+                                        path = generate_path(station1, station2, get_successor, get_heuristic, distance1, transfers1, stops1)
+                                        path2 = generate_path(station1, station2, get_successor, get_heuristic, distance2, transfers2, stops2)
+                                        if (distance1 == distance2 and get_distance(path) == get_distance(path2)) or (distance1 != distance2 and get_distance(path) != get_distance(path2)):
+                                            if (transfers1 == transfers2 and get_transfers(path) == get_transfers(path2)) or (transfers1 != transfers2 and get_transfers(path) != get_transfers(path2)):
+                                                if (stops1 == stops2 and len(path) == len(path2)) or (stops1 != stops2 and len(path) != len(path2)):
+                                                    print(distance1, transfers1, stops1, distance2, transfers2, stops2, station1, station2)
+                                                    print("path1:")
+                                                    print("distance:" + str(get_distance(path)), "transfers:" + str(get_transfers(path)), "stops:" + str(len(path)))
+                                                    print("path2:")
+                                                    print("distance:" + str(get_distance(path2)),"transfers:" +  str(get_transfers(path2)), "stops:" + str(len(path2)))
+                                                    found = True
+                                                    break
+                                    if(found):
+                                        found = False
+                                        break
+>>>>>>> 3a73f28a67d7106507e1d8d3d0a136411b6d1fd0
