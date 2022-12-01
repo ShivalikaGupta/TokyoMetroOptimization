@@ -1,6 +1,9 @@
 import json
 import math
 from heapq import heappush, heappop
+import time
+
+import sys
 
 class PriorityQueue:
     
@@ -164,5 +167,44 @@ def calculate(start, goal, distance_h, transfer_h, stops_h):
         result2["percent"] = percent
         return result2 
     return result
+
+def dfs(start, goal):
+    stack = [((start, 0), [start])]
+    shortest_distance = sys.maxsize
+    shortest_path = []
+    while stack:
+        ((vertex, cost), path) = stack.pop()
+        for location in location_data3[vertex]:
+            next = location[0]
+            dist = location[1]
+        #set([succ[0] for succ in location_data3[vertex]]) - set(path):
+            if next not in set(path):
+                if next == goal:
+                    if cost + dist < shortest_distance:
+                        shortest_distance = cost +dist 
+                        shortest_path = path +[next]
+                else:
+                    stack.append(((next, cost + dist), path + [next]))
+    return shortest_path
+    # min = sys.maxsize
+    # min_path = []
+    # for path in list(result):
+    #     curr_distance = get_distance(path, location_data3)
+    #     if curr_distance < min:
+    #         min = curr_distance
+    #         min_path = path 
+    # return min_path
+
+start = time.time()
+out = dfs("A01", "G12")
+end = time.time()
+
+print(out)
+print("distance: " + str(get_distance(out, location_data3)))
+print("time elapsed: " + str(end - start))
+
+
+
+
 
 
