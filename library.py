@@ -168,6 +168,7 @@ def calculate(start, goal, distance_h, transfer_h, stops_h):
         return result2 
     return result
 
+<<<<<<< HEAD
 def dfs(start, goal):
     stack = [((start, 0), [start])]
     shortest_distance = sys.maxsize
@@ -204,6 +205,8 @@ print("distance: " + str(get_distance(out, location_data3)))
 print("time elapsed: " + str(end - start))
 
 
+=======
+>>>>>>> 3a73f28a67d7106507e1d8d3d0a136411b6d1fd0
 def test_algo():
     found = False
     for distance1 in range(0,2):
