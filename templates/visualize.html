@@ -30,7 +30,10 @@
                 stroke: rgb(185, 181, 181);
                 stroke-width: 1px;
             }
-  
+            .column{
+                display:flex;
+                flex-direction: row;
+            }
         </style>
     </head>
     <body class="w3-light-grey">
@@ -43,7 +46,7 @@
 
             <!-- Header -->
             <div class="w3-container" style="padding-top:22px">
-                <h5><b><i class="fa fa-dashboard"></i> Reducing: </b></h5>
+                <h2><b><i class="fa fa-dashboard"></i> Reducing: </b></h2>
             </div>
             <div class="w3-panel">
             <div class="w3-row-padding w3-margin-bottom">
@@ -76,7 +79,23 @@
                 <div class="w3-row-padding" style="margin:0 -16px">
                   
                   <div class="w3-twothird">
-                    <h5>Regions</h5>
+                    <h2>Regions</h2>
+                    <div class = "column">
+                        <p style="color: black; padding-right: 1ch;">Path: black</p>
+                        <p style="color: #FF007F; padding-right: 1ch;">Asakusa Line: Rose</p>
+                        <p style="color: blue; padding-right: 1ch;">Mita Line: Blue</p>
+                        <p style="color: magenta; padding-right: 1ch;">Oedo Line: Magenta</p>
+                        <p style="color: #3A5F0B; padding-right: 1ch;">Shinjuku Line: Leaf</p>
+                        <p style="color: Orange; padding-right: 1ch;">Ginza Line: Orange</p>
+                        <p style="color: red; padding-right: 1ch;">Marunouchi Line: Red</p>
+                        <p style="color: silver; padding-right: 1ch;">Hibiya Line: Silver</p>
+                        <p style="color: #87CEEB; padding-right: 1ch;">Tozai Line: Sky</p>
+                        <p style="color: green; padding-right: 1ch;">Chiyoda Line: Green</p>
+                        <p style="color: gold; padding-right: 1ch;">Yarakucho Line: Gold</p>
+                        <p style="color: purple; padding-right: 1ch;">Hanzomon Line: Purple</p>
+                        <p style="color: brown; padding-right: 1ch;">Fukutoshin Line: Brown</p>
+                        <p style="color: #50C878; padding-right: 1ch;">Namboku Line: Emerald</p>
+                    </div>
                     <svg id="tokyo" height="500" width="1500" style="margin:5px"></svg>
                         <script>
                             const map = d3.select("svg#tokyo");
@@ -87,7 +106,7 @@
                                 
                                 const data = await d3.json("../static/images/tokyo.geojson");
                                 //console.log(data);
-                                //viewport.attr("transform", "translate (-150, -100)");
+                                viewport.attr("transform", "translate(-7013, -62) scale(9.2)");
                                 var projection = d3.geoMercator()
                                         .center([-1000, 60 ])
                                         .scale(500)
@@ -132,21 +151,65 @@
                                     //console.log(text.curr)
                                     locs = text.locations;
                                     for (const [key, value] of Object.entries(locs)) {
-                                        locs[key]["color"] = "black";
+                                        locs[key]["special"] = 0.6;
+                                        if (key[0] === "A"){
+                                            locs[key]["color"] = "#FF007F";
+                                        }
+                                        else if (key[0] === "C"){
+                                            locs[key]["color"] = "green";
+                                        }
+                                        else if (key[0] === "E"){
+                                            locs[key]["color"] = "magenta";
+                                        }
+                                        else if (key[0] === "F"){
+                                            locs[key]["color"] = "brown";
+                                        }
+                                        else if (key[0] === "G"){
+                                            locs[key]["color"] = "orange";
+                                        }
+                                        else if (key[0] === "H"){
+                                            locs[key]["color"] = "silver"
+                                        }
+                                        else if (key[0] === "I"){
+                                            locs[key]["color"] = "blue"
+                                        }
+                                        else if (key[0] === "M"){
+                                            locs[key]["color"] = "red"
+                                        }
+                                        else if (key[0] === "N"){
+                                            locs[key]["color"] = "#50C878";
+                                        }
+                                        else if (key[0] === "S"){
+                                            locs[key]["color"] = "#3A5F0B";
+                                        }
+                                        else if (key[0] === "T"){
+                                            locs[key]["color"] = "#87CEEB";
+                                        }
+                                        else if (key[0] === "Y"){
+                                            locs[key]["color"] = "gold";
+                                        }
+                                        else if (key[0] === "Z"){
+                                            locs[key]["color"] = "purple";
+                                        }
+                                        else{
+                                            console.log(key);
+                                            locs[key]["color"] = "black";
+                                        }
                                     }
                                     // locs.forEach(ele => {
                                     //     ele["color"] = "black";
                                     // })
                                     path.forEach(ele => {
-                                        locs[ele]["color"] = "red";
+                                        locs[ele]["special"] = 1;
+                                        locs[ele]["color"] = "black";
                                         // console.log(locs[ele]["color"]);
                                     });
                                     // console.log(locs)
                                     viewport.selectAll("circle").data(Object.values(locs))
                                         .join("circle")
-                                        .attr("r", d=> {if (d.color === "black"){ return 0.3} else{ return 0.6}})
+                                        .attr("r", d=> {if (d.special == 1){ return 1} else{ return 0.5}})
                                         .attr("fill", d=> d["color"])
-                                        // .attr("opacity", 0.4)
+                                        .attr("opacity", d => d.special)
                                         .attr("cx", d => projection( [Number(d.longitude), Number(d.latitude)])[0])
                                         .attr("cy", d => projection( [Number(d.longitude), Number(d.latitude)])[1]);
                                     });
@@ -156,25 +219,25 @@
                                 // viewport.select(".zips-outline")
                                 //         .style("stroke-width", 1 / transform.k);
                                 // map.call(d3.zoom());
-                                var zoom = d3.zoom()
-                                    .scaleExtent([1,10])
-                                    .on("zoom", mapZoomed);
+                                // var zoom = d3.zoom()
+                                //     .scaleExtent([1,10])
+                                //     .on("zoom", mapZoomed);
 
-                                map.call(zoom);
+                                // map.call(zoom);
 
-                                function mapZoomed({transform}) { 
-                                    //console.log(transform);
-                                    viewport.attr("transform", transform.toString() );
-                                    viewport.select(".zips-outline")
-                                            .style("stroke-width", 1 / transform.k);
-                                }
+                                // function mapZoomed({transform}) { 
+                                //     //console.log(transform);
+                                //     viewport.attr("transform", transform.toString() );
+                                //     viewport.select(".zips-outline")
+                                //             .style("stroke-width", 1 / transform.k);
+                                // }
                             }
                             requestData();
                         </script>
                   </div>
                   <div class="w3-third">
                     <div class="w3-container">
-                        <h5>Stations Along The Path</h5>
+                        <h2>Stations Along The Path</h2>
                         <table class="w3-table w3-striped w3-bordered w3-border
                             w3-hoverable w3-white" id = "pathTable">
                             <tr>
@@ -188,7 +251,7 @@
                   </div>
                 </div>
               </div>
-              <h5>Feeds</h5>
+              <h2>Feeds</h2>
                         <table class="w3-table w3-striped w3-white">
                             <tr id = "t_distance">
                                 <td><i class="fa fa-map-o w3-text-blue w3-large"></i></td>
