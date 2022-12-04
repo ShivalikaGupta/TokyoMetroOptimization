@@ -6,23 +6,6 @@
             src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"></script>
-        <!--
-        <script>
-            function SubForm (){
-                $.ajax({
-                    url:'https://api.apispreadsheets.com/data/8344/',
-                    type:'post',
-                    data:$("#myForm").serializeArray(),
-                    success: function(){
-                    alert("Form Submitted Successfully!")
-                    },
-                    error: function(){
-                    alert("Error: Form Not Submitted")
-                    }
-                });
-            }
-        </script>
-        -->
         <script>
             var start = "";
             var end = "";
@@ -42,18 +25,8 @@
                 fetch('/background_process_test?start=' + start + '&end=' + end).then(function (response) {
                     return response.json();
                 }).then(function (text) {
-                    // console.log('GET response:');
-                    // console.log(text);
-                    // console.log(text.path);
-                    // console.log(text.added);
-                    // console.log(text.percent)
                     window.location = "results?" + "s=" + start + "&e=" + end + "&d=" + dist + "&t=" + trans + "&st=" + stops + "&path=" + text.path + "&distance=" + text.distance + "&transfers=" + text.transfers + "&added=" + text.added + "&percent=" + text.percent;
                 });
-                // $.getJSON('/background_process_test', function(data) {
-                //     console.log(data)
-                // });
-                //console.log(results.data);
-                
             }
         </script>
         <style>
@@ -105,14 +78,10 @@
                 border-right:none;
                 padding:15px;
                 text-align: left;
-            
-
             }
-
             .writeInInputs h3{
             text-align:left;
             padding-left:12%;
-
             }
             .writeInInputs textarea{
                 width: 75%;
