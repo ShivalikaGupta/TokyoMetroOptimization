@@ -65,11 +65,13 @@ def get_heuristic(distance, transfer, stops, current, succ, goal):
     heur = 0
     value = 0
     if(distance):
-        heur += distance_heuristic(succ, goal) + get_distance(current, succ)
-        value += get_distance(current, succ)
+        temp =distance_heuristic(current, succ)
+        heur += distance_heuristic(succ, goal) + temp
+        value += temp
     if(transfer):
-        heur += transfer_heuristic(current, succ) 
-        value += transfer_heuristic(current, succ) 
+        temp =  transfer_heuristic(current, succ) 
+        heur += temp 
+        value += temp
     if(stops):
         heur += stop_heuristic(succ, goal) + 1
         value += 1
@@ -105,7 +107,9 @@ def get_transfers(path):
 
 def get_distance(path, location_data2):
     distance = 0
+    #print(location_data2)
     for i in range(0, len(path)-1):
+
         connections = location_data2[path[i]]
         for j in range(0, len(connections)):
             if connections[j][0] == path[i+1]:
@@ -120,6 +124,7 @@ def get_distance(path, location_data2):
 # successor: how we pick the next stop
 # heuristic: how we evaluate the possible next stops
 def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, stops_h, location_data2 = location_data2):
+  start1 = time.time_ns()
   visited = set()
   history = dict()
   distance = {start: 0}
@@ -131,7 +136,9 @@ def generate_path(start, goal, successor_f, heuristic, distance_h, transfer_h, s
       if node in visited:
           continue
       if goal == node:#change this to be if the node == goal station
-          return reconstruct_path(history, start, node)
+            end1 = time.time_ns()
+            print("Time taken: " + str(end1-start1))
+            return reconstruct_path(history, start, node)
       visited.add(node)
       for successor in successor_f(node, location_data2):
         #   print(successor)
@@ -168,24 +175,24 @@ def calculate(start, goal, distance_h, transfer_h, stops_h):
         return result2 
     return result
 
-def dfs(start, goal):
-    stack = [((start, 0), [start])]
-    shortest_distance = sys.maxsize
-    shortest_path = []
-    while stack:
-        ((vertex, cost), path) = stack.pop()
-        for location in location_data3[vertex]:
-            next = location[0]
-            dist = location[1]
-        #set([succ[0] for succ in location_data3[vertex]]) - set(path):
-            if next not in set(path):
-                if next == goal:
-                    if cost + dist < shortest_distance:
-                        shortest_distance = cost +dist 
-                        shortest_path = path +[next]
-                else:
-                    stack.append(((next, cost + dist), path + [next]))
-    return shortest_path
+# def dfs(start, goal):
+#     stack = [((start, 0), [start])]
+#     shortest_distance = sys.maxsize
+#     shortest_path = []
+#     while stack:
+#         ((vertex, cost), path) = stack.pop()
+#         for location in location_data3[vertex]:
+#             next = location[0]
+#             dist = location[1]
+#         #set([succ[0] for succ in location_data3[vertex]]) - set(path):
+#             if next not in set(path):
+#                 if next == goal:
+#                     if cost + dist < shortest_distance:
+#                         shortest_distance = cost +dist 
+#                         shortest_path = path +[next]
+#                 else:
+#                     stack.append(((next, cost + dist), path + [next]))
+#     return shortest_path
     # min = sys.maxsize
     # min_path = []
     # for path in list(result):
@@ -195,13 +202,13 @@ def dfs(start, goal):
     #         min_path = path 
     # return min_path
 
-start = time.time()
-out = dfs("A01", "G12")
-end = time.time()
+# start = time.time()
+# out = dfs("A01", "G12")
+# end = time.time()
 
-print(out)
-print("distance: " + str(get_distance(out, location_data3)))
-print("time elapsed: " + str(end - start))
+# print(out)
+# print("distance: " + str(get_distance(out, location_data3)))
+# print("time elapsed: " + str(end - start))
 
 
 def test_algo():
@@ -230,3 +237,51 @@ def test_algo():
                                     if(found):
                                         found = False
                                         break
+from collections import defaultdict
+from heapq import *
+
+# def reconstruct_dijkstra(path):
+#     distance = path[0]
+#     for i in 7
+def dijkstra(f, t):
+
+    q, seen, mins = [(0,f,[])], [], {f: 0}
+    while q:
+        (cost,v1,path) = heappop(q)
+        if v1 not in seen:
+            seen.append(v1)
+            path2 = []
+            for i in path:
+                path2.append(i)
+            path2.append(v1)
+            path = path2
+            if v1 == t: return (cost, path)
+
+            for v2, c in location_data3[v1]:
+                if v2 in seen: continue
+                prev = mins.get(v2, None)
+                next = cost + c
+                if prev is None or next < prev:
+                    mins[v2] = next
+                    heappush(q, (next, v2, path))
+
+    return float("inf"), None
+
+# print("Dijkstra")
+# start = time.time_ns()
+# out = dijkstra("A01", "N10")
+# end = time.time_ns()
+# print("Time taken: " + str(end-start))
+# print("distance is: " + str(out[0]))
+# print("path: ")
+# print(out[1])
+# #start1 = time.time_ns()
+
+# print("A* Search")
+# out1 = generate_path("A01", "N10", get_successor, get_heuristic, True, True, True, location_data3)
+# print("distance is: " + str(get_distance(out1, location_data3)))
+# print("path: ")
+# #end1 = time.time_ns()
+# print(out1)
+
+#print(end1 - start1)
